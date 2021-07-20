@@ -21,3 +21,7 @@ header {
     cursor: pointer;
     background:rgb(251, 147, 0);
 }
+
+#extra-space {
+    padding: 18vh 0;
+}
