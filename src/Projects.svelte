@@ -99,10 +99,6 @@
 
 {#if show}
 <div id="projects" use:reveal={{ transition: "fly" }}>
-    
-    
-    
-    
     <h2>Projects</h2>
     <p id="subtext">
         What I've created or worked on
