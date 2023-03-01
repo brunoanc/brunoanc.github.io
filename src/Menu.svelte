@@ -13,7 +13,7 @@
 <nav id="navbar">
     <div id="nav-left">
         <a href="#top">
-            <img src="./src/assets/terminal.png" alt="Icon" width="40" style="filter: invert(1);">
+            <img src="terminal.png" alt="Icon" width="40" style="filter: invert(1);">
         </a>
     </div>
     <div id="nav-center">
@@ -28,7 +28,7 @@
     <div id="nav-right">
         <a href="https://github.com/PowerBall253" target="_blank" rel="noreferrer noopener">
             <button>
-                <img src="./src/assets/github.svg" alt="GitHub">
+                <img src="socials/github.svg" alt="GitHub">
                 <p>GitHub</p>
             </button>
         </a>

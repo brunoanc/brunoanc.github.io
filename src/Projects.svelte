@@ -115,7 +115,7 @@
                     <a href="{href}" target="_blank" rel="noreferrer noopener">
                         {name}
                     </a>
-                    <img src="./src/assets/{img}" alt="" height="90%">
+                    <img src="languages/{img}" alt="" height="90%">
                 </div>
                 <p>
                     {desc}

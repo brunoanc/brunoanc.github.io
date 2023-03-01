@@ -38,7 +38,7 @@
         <Carousel particlesToShow={particlesToShow} dots={false} autoplay autoplayDuration={0} duration={duration} timingFunction="linear" arrows={false} swiping={false}>
             {#each skills as {name, img}}
             <div class="carousel-elem">
-                <img src="./src/assets/{img}" alt="{name}">
+                <img src="languages/{img}" alt="{name}">
                 <p>{name}</p>
             </div>
             {/each}

@@ -35,13 +35,13 @@
                 <div id="socials">
                     {#each socials as {src, alt, width, href}}
                     <a href="{href}" style="width: {width};" target="_blank" rel="noreferrer noopener">
-                        <img src="./src/assets/{src}" alt="{alt}" width="100%">
+                        <img src="socials/{src}" alt="{alt}" width="100%">
                     </a>
                     {/each}
                 </div>
             </div>
             <div id="code-container">
-                <img id="code" src="./src/assets/code.png" alt="">
+                <img id="code" src="code.png" alt="">
             </div>
         </div>
     </div>
