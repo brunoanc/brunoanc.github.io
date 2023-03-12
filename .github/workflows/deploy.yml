@@ -19,6 +19,7 @@ jobs:
         npm install
         npm run build
         cp CNAME dist
+        cp sitemap.xml dist
 
     - name: Publish github pages
       run: |
