@@ -20,31 +20,31 @@
         },
         {
             name: 'EternalModLoaderCpp',
-            href: 'https://github.com/PowerBall253/EternalModLoaderCpp',
+            href: 'https://github.com/brunoanc/EternalModLoaderCpp',
             img: 'cpp.svg',
             desc: 'DOOM Eternal mod loader, ported to C++ for Linux.'
         },
         {
             name: 'EternalModManager',
-            href: 'https://github.com/PowerBall253/EternalModManager-Avalonia',
+            href: 'https://github.com/brunoanc/EternalModManager-Avalonia',
             img: 'csharp.png',
             desc: 'Cross-platform mod manager for DOOM Eternal.'
         },
         {
             name: 'AutoHeckinTextConverter',
-            href: 'https://github.com/PowerBall253/AutoHeckinTextureConverter',
+            href: 'https://github.com/brunoanc/AutoHeckinTextureConverter',
             img: 'rust.svg',
             desc: 'Cross-platform texture converter for DOOM Eternal.'
         },
         {
             name: 'BlangJsonGeneratorUI',
-            href: 'https://github.com/PowerBall253/BlangJsonGeneratorUI',
+            href: 'https://github.com/brunoanc/BlangJsonGeneratorUI',
             img: 'csharp.png',
             desc: 'GUI utility for creating string mods for DOOM Eternal.'
         },
         {
             name: 'EternalResourceExtractor',
-            href: 'https://github.com/PowerBall253/EternalResourceExtractor',
+            href: 'https://github.com/brunoanc/EternalResourceExtractor',
             img: 'cpp.svg',
             desc: 'Small utility to extract files from a DOOM Eternal .resources file.'
         },
@@ -62,31 +62,31 @@
         },
         {
             name: 'EternalPatcher',
-            href: 'https://github.com/PowerBall253/EternalPatcherGo',
+            href: 'https://github.com/brunoanc/EternalPatcherGo',
             img: 'go.svg',
             desc: 'DOOM Eternal executable patcher.'
         },
         {
             name: 'idRehash',
-            href: 'https://github.com/PowerBall253/idRehashGo',
+            href: 'https://github.com/brunoanc/idRehashGo',
             img: 'go.svg',
             desc: 'DOOM Eternal .resources rehasher.'
         },
         {
             name: 'EternalPatchManifest',
-            href: 'https://github.com/PowerBall253/EternalPatchManifestGo',
+            href: 'https://github.com/brunoanc/EternalPatchManifestGo',
             img: 'go.svg',
             desc: 'DOOM Eternal build manifest patcher.'
         },
         {
             name: 'DOOMLauncher',
-            href: 'https://github.com/PowerBall253/DOOMLauncher',
+            href: 'https://github.com/brunoanc/DOOMLauncher',
             img: 'csharp.png',
             desc: 'Launcher for DOOM (2016) that bypasses dev mode limitations on startup.'
         },
         {
             name: 'Portfolio',
-            href: 'https://github.com/PowerBall253/PowerBall253.github.io',
+            href: 'https://github.com/brunoanc/brunoanc.github.io',
             img: 'js.svg',
             desc: 'This webpage :)'
         }

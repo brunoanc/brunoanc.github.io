@@ -8,9 +8,9 @@
     });
 
     let socials = [
-        { src: 'github.svg', alt: 'GitHub', width: '4%', href: 'https://github.com/PowerBall253' },
+        { src: 'github.svg', alt: 'GitHub', width: '4%', href: 'https://github.com/brunoanc' },
         { src: 'discord.svg', alt: 'Discord', width: '5%', href: 'https://discordapp.com/users/313058866868912128' },
-        { src: 'mail.png', alt: 'Email', width: '5%', href: 'mailto:bruno@powerball253.com' },
+        { src: 'mail.png', alt: 'Email', width: '5%', href: 'mailto:brunoanconasala@gmail.com' },
     ];
 
     function scrollIntoView(target) {

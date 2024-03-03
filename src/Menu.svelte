@@ -26,7 +26,7 @@
         </ul>
     </div>
     <div id="nav-right">
-        <a href="https://github.com/PowerBall253" target="_blank" rel="noreferrer noopener">
+        <a href="https://github.com/brunoanc" target="_blank" rel="noreferrer noopener">
             <button>
                 <img src="socials/github.svg" alt="GitHub">
                 <p>GitHub</p>
