@@ -26,8 +26,8 @@
         },
         {
             name: 'EternalModManager',
-            href: 'https://github.com/brunoanc/EternalModManager-Avalonia',
-            img: 'csharp.png',
+            href: 'https://github.com/brunoanc/EternalModManagera',
+            img: 'rust.svg',
             desc: 'Cross-platform mod manager for DOOM Eternal.'
         },
         {
