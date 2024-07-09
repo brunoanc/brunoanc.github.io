@@ -20,6 +20,7 @@ jobs:
         npm run build
         cp CNAME dist
         cp sitemap.xml dist
+        cp .nojekyll dist
 
     - name: Publish github pages
       run: |
