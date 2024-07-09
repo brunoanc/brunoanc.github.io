@@ -20,11 +20,11 @@ jobs:
         npm run build
         cp CNAME dist
         cp sitemap.xml dist
-        cp .nojekyll dist
 
     - name: Publish github pages
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/brunoanc/brunoanc.github.io.git
+        cp .nojekyll dist
         ls dist
         npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
       env:
