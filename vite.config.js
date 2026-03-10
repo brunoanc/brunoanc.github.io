@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/',
-  plugins: [svelte()],
-  server: {
-    host: '0.0.0.0'
-  }
-})
+    base: '/',
+    plugins: [svelte()],
+    server: {
+        host: '0.0.0.0'
+    }
+});
