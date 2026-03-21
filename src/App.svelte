@@ -1,55 +1,67 @@
 <script>
+    import { _, locale } from 'svelte-i18n';
+
     import TopNav from './components/TopNav.svelte';
     import Section from './components/Section.svelte';
     import ProjectCard from './components/ProjectCard.svelte';
     import ExperienceItem from './components/ExperienceItem.svelte';
     import SiteFooter from './components/SiteFooter.svelte';
 
-    import { profile } from './data/profile';
-    import { certifications } from './data/certifications';
-    import { skillGroups } from './data/skills';
-    import { experience, education } from './data/experience';
-    import { projects } from './data/projects';
+    import { setAppLocale } from './i18n';
+    import { content } from './data/content';
 
     const featuredSlugs = ['smmun', 'cufa-admin-system', 'eternal-mod-manager'];
-    const featuredProjects = projects.filter((project) => featuredSlugs.includes(project.slug));
 
-    const navSections = [
-        { id: 'projects', label: 'Projects' },
-        { id: 'experience', label: 'Experience' },
-        { id: 'about', label: 'About' },
-        { id: 'cv', label: 'CV' },
-        { id: 'contact', label: 'Contact' }
+    $: currentLocale = $locale === 'es' ? 'es' : 'en';
+    $: localized = content[currentLocale];
+    $: profile = localized.profile;
+    $: certifications = localized.certifications;
+    $: skillGroups = localized.skillGroups;
+    $: experience = localized.experience;
+    $: education = localized.education;
+    $: projects = localized.projects;
+    $: aboutLead = localized.aboutLead;
+    $: cvFocusItems = localized.cvFocusItems;
+    $: featuredProjects = projects.filter((project) => featuredSlugs.includes(project.slug));
+    $: navSections = [
+        { id: 'projects', label: $_('nav.projects') },
+        { id: 'experience', label: $_('nav.experience') },
+        { id: 'about', label: $_('nav.about') },
+        { id: 'cv', label: $_('nav.cv') },
+        { id: 'contact', label: $_('nav.contact') }
     ];
+
+    $: if (typeof document !== 'undefined') {
+        document.documentElement.lang = currentLocale;
+    }
 </script>
 
-<TopNav sections={navSections} github={profile.links.github} />
+<TopNav
+    sections={navSections}
+    github={profile.links.github}
+    {currentLocale}
+    setLocale={setAppLocale}
+/>
 
 <main>
     <Section id="home" compact>
         <div class="home-grid">
             <div class="home-copy">
                 <h1>{profile.headline}</h1>
-                <p class="lead">
-                    Software engineering student with hands-on experience in cloud-native systems,
-                    full-stack development, and cybersecurity.
-                </p>
+                <p class="lead">{$_('home.lead')}</p>
                 <div class="hero-actions">
-                    <a class="btn primary" href="#projects">View Projects</a>
-                    <a class="btn secondary" href="#cv">Download CV</a>
+                    <a class="btn primary" href="#projects">{$_('actions.viewProjects')}</a>
+                    <a class="btn secondary" href="#cv">{$_('actions.viewCv')}</a>
                 </div>
             </div>
             <figure class="terminal-preview">
-                <img
-                    src="code.png"
-                    alt="Terminal-style profile snippet with skills and languages."
-                />
+                <img src="code.png" alt={$_('home.imageAlt')} />
             </figure>
         </div>
     </Section>
 
-    <Section id="highlights" title="Highlights">
-        <div class="cert-strip" aria-label="Highlights">
+    <Section id="highlights" title={$_('sections.highlights')}>
+        <div class="cert-strip" aria-label={$_('highlights.aria')}>
             {#each certifications as item}
                 <span>
                     {#if item.icon === 'cloud'}
@@ -87,11 +99,8 @@
         </div>
     </Section>
 
-    <Section id="projects" title="Selected Work">
-        <p class="section-lead">
-            The recent work here is centered on production systems, cloud-native workflows, and
-            cross-platform tooling that solve real operational problems.
-        </p>
+    <Section id="projects" title={$_('sections.work')}>
+        <p class="section-lead">{$_('projects.lead')}</p>
 
         <div class="project-grid">
             {#each featuredProjects as project}
@@ -100,7 +109,7 @@
         </div>
 
         <details class="all-projects">
-            <summary>See full project list</summary>
+            <summary>{$_('projects.all')}</summary>
             <div class="project-grid full">
                 {#each projects.filter((project) => !project.featured) as project}
                     <ProjectCard {project} />
@@ -109,7 +118,7 @@
         </details>
     </Section>
 
-    <Section id="experience" title="Experience and Leadership">
+    <Section id="experience" title={$_('sections.experience')}>
         <div class="experience-list timeline">
             {#each experience as item}
                 <ExperienceItem {item} />
@@ -127,12 +136,8 @@
         </article>
     </Section>
 
-    <Section id="about" title="About">
-        <p class="section-lead">
-            My work spans cloud-native backend systems, full-stack product delivery, and
-            systems-level engineering. I care about reliability, maintainability, and building
-            software that teams can actually operate.
-        </p>
+    <Section id="about" title={$_('sections.about')}>
+        <p class="section-lead">{aboutLead}</p>
 
         <div class="skills-grid">
             {#each skillGroups as group}
@@ -148,30 +153,27 @@
         </div>
     </Section>
 
-    <Section id="cv" title="My CV">
-        <p class="section-lead">
-            Software engineering student with hands-on experience in cloud-native systems,
-            full-stack development, and cybersecurity.
-        </p>
+    <Section id="cv" title={$_('sections.cv')}>
+        <p class="section-lead">{$_('cv.lead')}</p>
         <div class="cv-actions">
             <a class="btn primary" href="/Bruno-Ancona-CV-English.pdf" download
-                >Download CV (English)</a
+                >{$_('cv.downloadEn')}</a
             >
             <a class="btn secondary" href="/Bruno-Ancona-CV-Spanish.pdf" download
-                >Download CV (Spanish)</a
+                >{$_('cv.downloadEs')}</a
             >
         </div>
         <div class="cv-grid">
             <article>
-                <h3>Current Focus</h3>
+                <h3>{$_('cv.focus')}</h3>
                 <ul>
-                    <li>Cloud-native backend systems, infrastructure, and reliable operations.</li>
-                    <li>Production software for institutional and event-driven workflows.</li>
-                    <li>Cross-platform tooling and security-aware engineering practices.</li>
+                    {#each cvFocusItems as item}
+                        <li>{item}</li>
+                    {/each}
                 </ul>
             </article>
             <article>
-                <h3>Contact</h3>
+                <h3>{$_('cv.contact')}</h3>
                 <ul>
                     <li>{profile.email}</li>
                     <li>{profile.phone}</li>
@@ -181,18 +183,18 @@
         </div>
     </Section>
 
-    <Section id="contact" title="Let's build something meaningful" compact>
-        <p class="section-lead">{profile.availability}</p>
+    <Section id="contact" title={$_('sections.contact')} compact>
+        <p class="section-lead">{$_('contact.lead')}</p>
         <div class="hero-actions">
-            <a class="btn primary" href={profile.links.email}>Email Me</a>
+            <a class="btn primary" href={profile.links.email}>{$_('contact.email')}</a>
             <a
                 class="btn secondary"
                 href={profile.links.linkedin}
                 target="_blank"
-                rel="noreferrer noopener">LinkedIn</a
+                rel="noreferrer noopener">{$_('contact.linkedin')}</a
             >
         </div>
     </Section>
 </main>
 
-<SiteFooter name={profile.name} />
+<SiteFooter name={profile.name} backToTopLabel={$_('footer.top')} />

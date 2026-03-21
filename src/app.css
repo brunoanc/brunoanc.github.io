@@ -147,6 +147,12 @@ section.compact {
     gap: 0.6rem;
 }
 
+.top-nav .top-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .top-nav nav {
     display: flex;
     flex-wrap: wrap;
@@ -166,6 +172,29 @@ section.compact {
     border-radius: 8px;
     padding: 0.45rem 0.65rem;
     text-decoration: none;
+}
+
+.top-nav .locale-toggle {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface-2);
+}
+
+.top-nav .locale-toggle button {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.82rem;
+    padding: 0.45rem 0.6rem;
+    cursor: pointer;
+}
+
+.top-nav .locale-toggle button.active {
+    background: var(--accent);
+    color: #101010;
 }
 
 .top-nav .brand {
@@ -409,6 +438,10 @@ footer a {
 
     .top-nav {
         top: 0.4rem;
+    }
+
+    .top-nav .top-row {
+        align-items: flex-start;
     }
 
     .top-nav nav {
