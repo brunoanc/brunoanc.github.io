@@ -2,14 +2,17 @@ export const projects = [
     {
         slug: 'smmun',
         title: 'SMMUN.com',
-        role: 'Secretary of Finance and Technology / Full-Stack Developer',
+        role: 'Secretary of Finance and Technology / Cloud-Native Developer',
         summary:
-            'Full-stack event platform for a Model United Nations conference, including a production registration workflow.',
-        problem: 'The event required reliable online registration and operational coordination.',
+            'Cloud-native registration system for a Model United Nations conference, built around asynchronous workflows and operational reliability.',
+        problem: 'The event required reliable registration processing, file handling, and operational coordination at production scale.',
         solution:
-            'Built a Svelte frontend with a Python backend and PostgreSQL-backed form pipeline for end-to-end data handling.',
-        impact: ['Processed 500 registrations.', 'Reached about 1.4k clicks and 33M impressions.'],
-        stack: ['Svelte', 'Python', 'FastAPI', 'PostgreSQL'],
+            'Designed and deployed an event-driven architecture on Google Cloud with FastAPI, asynchronous processing, signed URL-based file flows, and infrastructure as code.',
+        impact: [
+            'Handled 500+ registrations, file uploads, and external service integrations.',
+            'Implemented idempotent workflows with state tracking and secure access patterns.'
+        ],
+        stack: ['FastAPI', 'Python', 'GCP', 'Cloud Run', 'Pub/Sub', 'Firestore', 'Terraform'],
         links: [{ label: 'Live Site', href: 'https://smmun.com' }],
         tags: ['Web', 'Cloud'],
         featured: true
@@ -36,15 +39,16 @@ export const projects = [
         title: 'CUFA Administrative System',
         role: 'Software Engineer',
         summary:
-            'Modular administrative platform used by university staff for operational workflows.',
+            'Administrative platform and supporting web delivery work used by university staff for daily operations.',
         problem:
             'CUFA needed a centralized system for registration, payments, careers, and administration.',
-        solution: 'Developed a Laravel + PostgreSQL system used in daily institutional operations.',
+        solution:
+            'Built the core Laravel + PostgreSQL system, added CI/CD and structured testing, and shipped a multilingual SvelteKit + Sanity website for staff-managed content.',
         impact: [
-            'Handles student registration and payment workflows.',
-            'Consolidates critical administrative processes into one platform.'
+            'Supports student registration, payments, careers, and related institutional workflows.',
+            'Improved deployment reliability and enabled non-technical staff to manage multilingual content independently.'
         ],
-        stack: ['Laravel', 'PHP', 'PostgreSQL'],
+        stack: ['Laravel', 'PHP', 'PostgreSQL', 'SvelteKit', 'Sanity CMS', 'CI/CD'],
         links: [],
         tags: ['Web'],
         featured: true
@@ -59,8 +63,8 @@ export const projects = [
         solution:
             'Built with Rust, GTK4, and libadwaita; distributed through Flathub, Snap, AppImage, AUR, and Windows EXE.',
         impact: [
-            '4.7k+ downloads on Flathub.',
-            'Enabled cross-platform mod management for the community.'
+            '4.6k+ downloads.',
+            'Designed a concurrent, cross-platform Rust architecture focused on memory safety and reliability.'
         ],
         stack: ['Rust', 'GTK4', 'libadwaita'],
         links: [

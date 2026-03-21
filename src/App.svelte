@@ -31,8 +31,8 @@
             <div class="home-copy">
                 <h1>{profile.headline}</h1>
                 <p class="lead">
-                    Software engineering student focused on full-stack, cloud, and systems work,
-                    with production delivery in education and event platforms.
+                    Software engineering student with hands-on experience in cloud-native systems,
+                    full-stack development, and cybersecurity.
                 </p>
                 <div class="hero-actions">
                     <a class="btn primary" href="#projects">View Projects</a>
@@ -89,8 +89,8 @@
 
     <Section id="projects" title="Selected Work">
         <p class="section-lead">
-            From production web platforms to reverse-engineered systems tools, I focus on practical
-            solutions with measurable impact.
+            The recent work here is centered on production systems, cloud-native workflows, and
+            cross-platform tooling that solve real operational problems.
         </p>
 
         <div class="project-grid">
@@ -129,9 +129,9 @@
 
     <Section id="about" title="About">
         <p class="section-lead">
-            I enjoy building products that connect user experience with robust engineering
-            underneath. My background combines full-stack delivery, cloud community leadership, and
-            systems-level development through open-source tooling.
+            My work spans cloud-native backend systems, full-stack product delivery, and
+            systems-level engineering. I care about reliability, maintainability, and building
+            software that teams can actually operate.
         </p>
 
         <div class="skills-grid">
@@ -150,8 +150,8 @@
 
     <Section id="cv" title="My CV">
         <p class="section-lead">
-            Software engineering student with hands-on experience in full-stack systems,
-            cybersecurity, and systems-level programming.
+            Software engineering student with hands-on experience in cloud-native systems,
+            full-stack development, and cybersecurity.
         </p>
         <div class="cv-actions">
             <a class="btn primary" href="/Bruno-Ancona-CV-English.pdf" download
@@ -165,9 +165,9 @@
             <article>
                 <h3>Current Focus</h3>
                 <ul>
-                    <li>Cloud, backend reliability, and secure software practices.</li>
-                    <li>Production systems for institutional and event operations.</li>
-                    <li>Cross-platform tooling and performance-oriented engineering.</li>
+                    <li>Cloud-native backend systems, infrastructure, and reliable operations.</li>
+                    <li>Production software for institutional and event-driven workflows.</li>
+                    <li>Cross-platform tooling and security-aware engineering practices.</li>
                 </ul>
             </article>
             <article>

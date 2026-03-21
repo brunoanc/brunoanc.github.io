@@ -8,11 +8,11 @@ export const skillGroups = [
         items: ['FastAPI', 'SvelteKit', 'Laravel', 'Flutter']
     },
     {
-        title: 'Data & Infra',
-        items: ['PostgreSQL', 'MySQL', 'Docker', 'CI/CD', 'Linux']
+        title: 'Cloud & Tools',
+        items: ['AWS', 'GCP', 'Docker', 'Terraform', 'CI/CD', 'Git', 'Linux']
     },
     {
         title: 'Domains',
-        items: ['Full-Stack Systems', 'Cloud Engineering', 'Cybersecurity', 'Reverse Engineering']
+        items: ['Cloud-Native Systems', 'Full-Stack Development', 'Cybersecurity', 'Reverse Engineering']
     }
 ];

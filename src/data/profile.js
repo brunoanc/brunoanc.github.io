@@ -3,8 +3,8 @@ export const profile = {
     location: 'Merida, MX',
     email: 'brunoanconasala@gmail.com',
     phone: '(999) 903-3025',
-    headline: 'I build reliable software across web, cloud, and low-level systems.',
-    intro: 'Software Engineering student at Anahuac Mayab (2024-2028), Director of Technology at AWS Cloud Club, and developer focused on scalable full-stack products, cybersecurity-minded engineering, and performance-oriented tooling.',
+    headline: 'I build cloud-native, full-stack, and systems software that solves real operational problems.',
+    intro: 'Software engineering student at Anahuac Mayab with hands-on experience in cloud-native systems, full-stack development, and cybersecurity. I build production software for institutional operations, event platforms, and cross-platform tooling.',
     availability:
         'Open to internships, collaborative projects, and engineering opportunities in full-stack, cloud, and systems development.',
     links: {
