@@ -48,22 +48,13 @@ export const content = {
                 title: 'Domains',
                 items: [
                     'Cloud-Native Systems',
-                    'Full-Stack Development',
+                    'Backend Development',
                     'Cybersecurity',
                     'Reverse Engineering'
                 ]
             }
         ],
         experience: [
-            {
-                org: 'AWS Cloud Club Anahuac Mayab',
-                role: 'Director of Technology',
-                period: '2026 - Present',
-                highlights: [
-                    'Lead cloud architecture initiatives, deliver AWS workshops, and mentor members on certifications and hands-on projects.'
-                ],
-                tags: ['Leadership', 'Cloud']
-            },
             {
                 org: 'Centro Universitario de Formacion Artistica (CUFA)',
                 role: 'Software Engineer',
@@ -76,14 +67,13 @@ export const content = {
                 tags: ['Full-Stack', 'Production']
             },
             {
-                org: 'Complejo Integral de Cultura (CIC)',
-                role: 'Software Engineering Intern',
-                period: '2025',
+                org: 'AWS Cloud Club Anahuac Mayab',
+                role: 'Director of Technology',
+                period: '2026 - Present',
                 highlights: [
-                    'Built and shipped CIC.org.mx as an institutional web delivery project.',
-                    'Contributed work that led directly to continued engineering responsibilities at CUFA.'
+                    'Lead cloud architecture initiatives, deliver AWS workshops, and mentor members on certifications and hands-on projects.'
                 ],
-                tags: ['Frontend', 'Delivery']
+                tags: ['Leadership', 'Cloud']
             },
             {
                 org: 'Southeastern Mexican Model UN',
@@ -100,8 +90,7 @@ export const content = {
             degree: 'B.S. in Software Engineering',
             period: '2024 - 2028',
             notes: [
-                'Full-ride Academic Excellence Scholarship (GPA 9.8/10)',
-                'Member of Vertice Leadership Program'
+                'Full-ride Academic Excellence Scholarship (GPA 9.8/10) · Member of Vertice Leadership Program'
             ]
         },
         projects: [
@@ -128,7 +117,10 @@ export const content = {
                     'Firestore',
                     'Terraform'
                 ],
-                links: [{ label: 'Live Site', href: 'https://smmun.com' }],
+                links: [
+                    { label: 'Live Site', href: 'https://smmun.com' },
+                    { label: 'GitHub', href: 'https://github.com/brunoanc/smmun-gcp' }
+                ],
                 tags: ['Web', 'Cloud'],
                 featured: true
             },
@@ -192,6 +184,28 @@ export const content = {
                 ],
                 tags: ['Systems', 'Open Source'],
                 featured: true
+            },
+            {
+                slug: 'open-source-contributions',
+                title: 'Open Source Contributions',
+                role: 'Contributor',
+                summary:
+                    'Targeted upstream fixes to systems and graphics tooling used outside my own projects.',
+                problem:
+                    'The affected projects had Linux-specific issues that blocked real device support and image export compatibility.',
+                solution:
+                    'Contributed patches to the Linux kernel and Microsoft DirectXTex to resolve concrete platform compatibility problems.',
+                impact: [
+                    'Fixed microphone and audio chipset support for a laptop model in the Linux kernel.',
+                    'Corrected Linux PNG export compatibility in DirectXTex using a libpng-based path.'
+                ],
+                stack: ['C', 'C++', 'Linux', 'libpng'],
+                links: [
+                    { label: 'Linux kernel', href: 'https://github.com/torvalds/linux' },
+                    { label: 'DirectXTex', href: 'https://github.com/microsoft/DirectXTex' }
+                ],
+                tags: ['Systems', 'Open Source'],
+                featured: false
             },
             {
                 slug: 'eternal-resource-extractor',
@@ -260,7 +274,7 @@ export const content = {
                 icon: 'trophy'
             },
             { label: 'Google Cybersecurity Certificate - Oct 2025', icon: 'shield' },
-            { label: 'Beca de Excelencia Academica (cobertura total)', icon: 'cap' }
+            { label: 'Beca de Excelencia Academica', icon: 'cap' }
         ],
         aboutLead:
             'Mi trabajo abarca backends cloud-native, entrega de producto backend e ingenieria de sistemas. Me importa la confiabilidad, el mantenimiento a largo plazo y construir software que los equipos realmente puedan operar.',
@@ -294,15 +308,6 @@ export const content = {
         ],
         experience: [
             {
-                org: 'AWS Cloud Club Anahuac Mayab',
-                role: 'Director de Tecnologia',
-                period: '2026 - presente',
-                highlights: [
-                    'Lidero iniciativas de arquitectura cloud, imparto talleres de AWS y asesoro a miembros en certificaciones y proyectos practicos.'
-                ],
-                tags: ['Liderazgo', 'Cloud']
-            },
-            {
                 org: 'Centro Universitario de Formacion Artistica (CUFA)',
                 role: 'Ingeniero de Software',
                 period: 'Feb 2025 - presente',
@@ -314,18 +319,17 @@ export const content = {
                 tags: ['Full-Stack', 'Produccion']
             },
             {
-                org: 'Complejo Integral de Cultura (CIC)',
-                role: 'Practicante de Ingenieria de Software',
-                period: '2025',
+                org: 'AWS Cloud Club Anahuac Mayab',
+                role: 'Director de Tecnología',
+                period: '2026 - presente',
                 highlights: [
-                    'Desarrolle y publique CIC.org.mx como proyecto web institucional.',
-                    'El trabajo entregado abrio el paso a responsabilidades continuas de ingenieria en CUFA.'
+                    'Lidero iniciativas de arquitectura cloud, imparto talleres de AWS y asesoro a miembros en certificaciones y proyectos practicos.'
                 ],
-                tags: ['Frontend', 'Entrega']
+                tags: ['Liderazgo', 'Cloud']
             },
             {
                 org: 'Modelo de Naciones Unidas del Sureste Mexicano',
-                role: 'Secretario de Tecnologia',
+                role: 'Secretario de Finanzas y Tecnología',
                 period: '2024 - presente',
                 highlights: [
                     'Superviso los sistemas digitales y la planificacion financiera de una conferencia MUN regional.'
@@ -337,16 +341,13 @@ export const content = {
             org: 'Universidad Anahuac Mayab',
             degree: 'Ingenieria en Software',
             period: '2024 - 2028',
-            notes: [
-                'Beca de Excelencia Academica (cobertura total) · GPA: 9.8/10',
-                'Miembro del Programa de Liderazgo Vertice'
-            ]
+            notes: ['Beca de Excelencia Academica · GPA: 9.8/10 · Miembro del Programa de Liderazgo Vertice']
         },
         projects: [
             {
                 slug: 'smmun',
                 title: 'SMMUN.com',
-                role: 'Secretario de Finanzas y Tecnologia / Desarrollador cloud-native',
+                role: 'Secretario de Finanzas y Tecnología / Desarrollador cloud-native',
                 summary:
                     'Sistema de registro cloud-native para una conferencia de Modelo de Naciones Unidas, construido sobre flujos asincronos y confiabilidad operativa.',
                 problem:
@@ -366,7 +367,10 @@ export const content = {
                     'Firestore',
                     'Terraform'
                 ],
-                links: [{ label: 'Sitio', href: 'https://smmun.com' }],
+                links: [
+                    { label: 'Sitio', href: 'https://smmun.com' },
+                    { label: 'GitHub', href: 'https://github.com/brunoanc/smmun-gcp' }
+                ],
                 tags: ['Web', 'Cloud'],
                 featured: true
             },
@@ -431,6 +435,28 @@ export const content = {
                 ],
                 tags: ['Sistemas', 'Open Source'],
                 featured: true
+            },
+            {
+                slug: 'open-source-contributions',
+                title: 'Contribuciones Open Source',
+                role: 'Colaborador',
+                summary:
+                    'Correcciones puntuales a proyectos upstream de sistemas y graficos usadas fuera de mis propios proyectos.',
+                problem:
+                    'Los proyectos afectados tenian problemas especificos de Linux que bloqueaban soporte de hardware real y compatibilidad de exportacion de imagenes.',
+                solution:
+                    'Contribui parches al kernel de Linux y a Microsoft DirectXTex para resolver problemas concretos de compatibilidad en plataforma.',
+                impact: [
+                    'Corregi soporte de microfono y chipset de audio para un modelo de laptop en el kernel de Linux.',
+                    'Arregle la compatibilidad de exportacion PNG en Linux en DirectXTex usando una ruta basada en libpng.'
+                ],
+                stack: ['C', 'C++', 'Linux', 'libpng'],
+                links: [
+                    { label: 'Linux kernel', href: 'https://github.com/torvalds/linux' },
+                    { label: 'DirectXTex', href: 'https://github.com/microsoft/DirectXTex' }
+                ],
+                tags: ['Sistemas', 'Open Source'],
+                featured: false
             },
             {
                 slug: 'eternal-resource-extractor',
