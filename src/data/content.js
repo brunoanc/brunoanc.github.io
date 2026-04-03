@@ -341,7 +341,9 @@ export const content = {
             org: 'Universidad Anahuac Mayab',
             degree: 'Ingenieria en Software',
             period: '2024 - 2028',
-            notes: ['Beca de Excelencia Academica · GPA: 9.8/10 · Miembro del Programa de Liderazgo Vertice']
+            notes: [
+                'Beca de Excelencia Academica · GPA: 9.8/10 · Miembro del Programa de Liderazgo Vertice'
+            ]
         },
         projects: [
             {

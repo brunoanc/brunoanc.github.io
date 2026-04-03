@@ -8,7 +8,7 @@
 <article class="project-card">
     <div class="project-header">
         <h3>{project.title}</h3>
-        <p class="role">{project.role}</p>
+        <p class="role mono">{project.role}</p>
     </div>
 
     <p class="summary">{project.summary}</p>
@@ -27,7 +27,7 @@
 
     <div class="stack">
         {#each project.stack as tech}
-            <small>{tech}</small>
+            <small class="mono">{tech}</small>
         {/each}
     </div>
 

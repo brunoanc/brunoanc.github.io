@@ -2,6 +2,8 @@
     import { _, locale } from 'svelte-i18n';
 
     import TopNav from './components/TopNav.svelte';
+    import TerminalCard from './components/TerminalCard.svelte';
+    import Starfield from './components/Starfield.svelte';
     import Section from './components/Section.svelte';
     import ProjectCard from './components/ProjectCard.svelte';
     import ExperienceItem from './components/ExperienceItem.svelte';
@@ -36,6 +38,8 @@
     }
 </script>
 
+<Starfield />
+
 <TopNav
     sections={navSections}
     github={profile.links.github}
@@ -47,6 +51,7 @@
     <Section id="home" compact>
         <div class="home-grid">
             <div class="home-copy">
+                <p class="kicker">{$_('home.kicker')}</p>
                 <h1>{profile.headline}</h1>
                 <p class="lead">{$_('home.lead')}</p>
                 <div class="hero-actions">
@@ -55,7 +60,7 @@
                 </div>
             </div>
             <figure class="terminal-preview">
-                <img src="code.png" alt={$_('home.imageAlt')} />
+                <TerminalCard locale={currentLocale} ariaLabel={$_('home.imageAlt')} />
             </figure>
         </div>
     </Section>
@@ -119,21 +124,25 @@
     </Section>
 
     <Section id="experience" title={$_('sections.experience')}>
-        <div class="experience-list timeline">
-            {#each experience as item}
-                <ExperienceItem {item} />
+        <div class="experience-list timeline-grid">
+            {#each experience as item, index}
+                <div class:timeline-left={index % 2 === 0} class:timeline-right={index % 2 !== 0}>
+                    <ExperienceItem {item} />
+                </div>
             {/each}
-        </div>
 
-        <article class="education-card">
-            <h3>{education.degree}</h3>
-            <p>{education.org} · {education.period}</p>
-            <ul>
-                {#each education.notes as note}
-                    <li>{note}</li>
-                {/each}
-            </ul>
-        </article>
+            <div class="timeline-right">
+                <article class="education-card">
+                    <h3>{education.degree}</h3>
+                    <p class="org mono">{education.org} · {education.period}</p>
+                    <ul>
+                        {#each education.notes as note}
+                            <li>{note}</li>
+                        {/each}
+                    </ul>
+                </article>
+            </div>
+        </div>
     </Section>
 
     <Section id="about" title={$_('sections.about')}>

@@ -20,6 +20,7 @@ const messages = {
             viewCv: 'View CV'
         },
         home: {
+            kicker: 'Cloud-native systems · Backend · Security',
             lead: 'Software engineering student with hands-on experience in cloud-native systems, backend development, and cybersecurity.',
             imageAlt: 'Terminal-style profile snippet with skills and languages.'
         },
@@ -78,6 +79,7 @@ const messages = {
             viewCv: 'Ver CV'
         },
         home: {
+            kicker: 'Sistemas cloud-native · Backend · Seguridad',
             lead: 'Estudiante de Ingenieria en Software con experiencia en sistemas cloud-native, desarrollo backend y ciberseguridad.',
             imageAlt: 'Fragmento de terminal con informacion de perfil, lenguajes y habilidades.'
         },
