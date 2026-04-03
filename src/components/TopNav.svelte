@@ -9,7 +9,7 @@
 
 <header class="top-nav">
     <div class="top-row">
-        <a class="brand" href="#home">Bruno Ancona</a>
+        <a class="brand mono" href="#home">Bruno Ancona Sala</a>
         <div class="top-actions">
             <div class="locale-toggle" aria-label={$_('locale.label')}>
                 <button
