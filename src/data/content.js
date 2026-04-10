@@ -16,13 +16,13 @@ export const content = {
             }
         },
         certifications: [
-            { label: 'AWS Certified Cloud Practitioner (CLF-C02) - Jan 2026', icon: 'cloud' },
+            { label: 'Google Cloud Certified - Associate Cloud Engineer', icon: 'cloud' },
+            { label: 'AWS Certified Cloud Practitioner (CLF-C02)', icon: 'cloud' },
             {
                 label: 'OEA Cyber Challenge Mexico 2025 CTF - 1st Place (50+ teams)',
                 icon: 'trophy'
             },
-            { label: 'Google Cybersecurity Certificate - Oct 2025', icon: 'shield' },
-            { label: 'Full-ride Academic Excellence Scholarship', icon: 'cap' }
+            { label: 'Google Cybersecurity Certificate', icon: 'shield' }
         ],
         aboutLead:
             'My work spans cloud-native backend systems, backend product delivery, and systems-level engineering. I care about reliability, maintainability, and building software that teams can actually operate.',
@@ -42,7 +42,7 @@ export const content = {
             },
             {
                 title: 'Cloud & Tools',
-                items: ['AWS', 'GCP', 'Docker', 'Terraform', 'CI/CD', 'Git', 'Linux']
+                items: ['AWS', 'Google Cloud', 'Docker', 'Terraform', 'CI/CD', 'Git', 'Linux']
             },
             {
                 title: 'Domains',
@@ -71,7 +71,7 @@ export const content = {
                 role: 'Director of Technology',
                 period: '2026 - Present',
                 highlights: [
-                    'Lead cloud architecture initiatives, deliver AWS workshops, and mentor members on certifications and hands-on projects.'
+                    'Lead cloud architecture initiatives, deliver AWS workshops, and mentor members on real projects.'
                 ],
                 tags: ['Leadership', 'Cloud']
             },
@@ -99,11 +99,11 @@ export const content = {
                 title: 'SMMUN.com',
                 role: 'Secretary of Finance and Technology / Cloud-Native Developer',
                 summary:
-                    'Cloud-native registration system for a Model United Nations conference, built around asynchronous workflows and operational reliability.',
+                    'Cloud-native web application for a Model United Nations conference, built on Google Cloud.',
                 problem:
                     'The event required reliable registration processing, file handling, and operational coordination at production scale.',
                 solution:
-                    'Designed and deployed an event-driven architecture on Google Cloud with FastAPI, asynchronous processing, signed URL-based file flows, and infrastructure as code.',
+                    'Designed an event-driven architecture on Google Cloud using Cloud Run, Pub/Sub, Firestore, and Terraform, then built a FastAPI service for registrations, uploads, and integrations.',
                 impact: [
                     'Handled 500+ registrations, file uploads, and external service integrations.',
                     'Implemented idempotent workflows with state tracking and secure access patterns.'
@@ -268,13 +268,13 @@ export const content = {
             }
         },
         certifications: [
-            { label: 'AWS Certified Cloud Practitioner (CLF-C02) - Ene 2026', icon: 'cloud' },
+            { label: 'Google Cloud Certified - Associate Cloud Engineer', icon: 'cloud' },
+            { label: 'AWS Certified Cloud Practitioner (CLF-C02)', icon: 'cloud' },
             {
                 label: 'OEA Cyber Challenge Mexico 2025 CTF - 1er lugar (50+ equipos)',
                 icon: 'trophy'
             },
-            { label: 'Google Cybersecurity Certificate - Oct 2025', icon: 'shield' },
-            { label: 'Beca de Excelencia Academica', icon: 'cap' }
+            { label: 'Google Cybersecurity Certificate', icon: 'shield' }
         ],
         aboutLead:
             'Mi trabajo abarca backends cloud-native, entrega de producto backend e ingenieria de sistemas. Me importa la confiabilidad, el mantenimiento a largo plazo y construir software que los equipos realmente puedan operar.',
@@ -294,7 +294,7 @@ export const content = {
             },
             {
                 title: 'Nube y herramientas',
-                items: ['AWS', 'GCP', 'Docker', 'Terraform', 'CI/CD', 'Git', 'Linux']
+                items: ['AWS', 'Google Cloud', 'Docker', 'Terraform', 'CI/CD', 'Git', 'Linux']
             },
             {
                 title: 'Areas',
@@ -323,13 +323,13 @@ export const content = {
                 role: 'Director de Tecnología',
                 period: '2026 - presente',
                 highlights: [
-                    'Lidero iniciativas de arquitectura cloud, imparto talleres de AWS y asesoro a miembros en certificaciones y proyectos practicos.'
+                    'Lidero iniciativas de arquitectura cloud, imparto talleres de AWS y asesoro en proyectos practicos.'
                 ],
                 tags: ['Liderazgo', 'Cloud']
             },
             {
                 org: 'Modelo de Naciones Unidas del Sureste Mexicano',
-                role: 'Secretario de Finanzas y Tecnología',
+                role: 'Secretario de Tecnología',
                 period: '2024 - presente',
                 highlights: [
                     'Superviso los sistemas digitales y la planificacion financiera de una conferencia MUN regional.'
@@ -351,11 +351,11 @@ export const content = {
                 title: 'SMMUN.com',
                 role: 'Secretario de Finanzas y Tecnología / Desarrollador cloud-native',
                 summary:
-                    'Sistema de registro cloud-native para una conferencia de Modelo de Naciones Unidas, construido sobre flujos asincronos y confiabilidad operativa.',
+                    'Aplicacion web cloud-native para una conferencia de Modelo de Naciones Unidas, construida sobre Google Cloud.',
                 problem:
                     'El evento necesitaba procesar registros, archivos y coordinacion operativa de forma confiable y a escala real.',
                 solution:
-                    'Disene y desplegue una arquitectura orientada a eventos en Google Cloud con FastAPI, procesamiento asincrono, flujos de archivos con URLs firmadas e infraestructura como codigo.',
+                    'Disene una arquitectura orientada a eventos en Google Cloud usando Cloud Run, Pub/Sub, Firestore y Terraform, y construi un servicio FastAPI para registros, cargas e integraciones.',
                 impact: [
                     'Gestiona 500+ registros, cargas de archivos e integraciones con servicios externos.',
                     'Implemente flujos idempotentes con seguimiento de estado y patrones de acceso seguro.'

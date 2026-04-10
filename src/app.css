@@ -451,7 +451,6 @@ section.compact {
 .cert-strip span {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     align-items: center;
     gap: 0.4rem;
     padding: 0.55rem 0.65rem;
@@ -461,6 +460,7 @@ section.compact {
     color: var(--muted);
     font-size: 0.76rem;
     line-height: 1.45;
+    text-align: center;
 }
 
 .cert-strip svg {
