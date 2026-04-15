@@ -6,7 +6,7 @@ export const content = {
             email: 'brunoanconasala@gmail.com',
             phone: '(999) 903-3025',
             headline:
-                'I build cloud-native, backend, and systems software that solves real operational problems.',
+                'I build cloud-native, backend, and systems software with a focus on reliable infrastructure and real operational use.',
             availability:
                 'Open to internships, collaborative projects, and engineering opportunities in backend, cloud, and systems development.',
             links: {
@@ -25,7 +25,7 @@ export const content = {
             { label: 'Google Cybersecurity Certificate', icon: 'shield' }
         ],
         aboutLead:
-            'My work spans cloud-native backend systems, backend product delivery, and systems-level engineering. I care about reliability, maintainability, and building software that teams can actually operate.',
+            'I specialize in cloud-native systems, backend infrastructure, and cybersecurity. My work focuses on reliability, maintainability, and software that can hold up under real operational use.',
         cvFocusItems: [
             'Cloud-native backend systems, infrastructure, and reliable operations.',
             'Production software for institutional and event-driven workflows.',
@@ -34,7 +34,7 @@ export const content = {
         skillGroups: [
             {
                 title: 'Languages',
-                items: ['Rust', 'C++', 'Python', 'C', 'Go', 'JavaScript', 'PHP']
+                items: ['C', 'C++', 'Rust', 'Python', 'JavaScript', 'Go', 'PHP']
             },
             {
                 title: 'Frameworks',
@@ -42,7 +42,7 @@ export const content = {
             },
             {
                 title: 'Cloud & Tools',
-                items: ['AWS', 'Google Cloud', 'Docker', 'Terraform', 'CI/CD', 'Git', 'Linux']
+                items: ['Google Cloud', 'AWS', 'Docker', 'Terraform', 'GitHub Actions', 'Linux']
             },
             {
                 title: 'Domains',
@@ -60,11 +60,10 @@ export const content = {
                 role: 'Software Engineer',
                 period: 'Feb 2025 - Present',
                 highlights: [
-                    'Designed and developed a modular administrative system using Laravel and PostgreSQL.',
-                    'Introduced CI/CD pipelines and structured testing, improving deployment reliability.',
-                    'Delivered a multilingual institutional website with SvelteKit and Sanity CMS, enabling non-technical staff to manage content independently.'
+                    'Sole engineer on a modular Laravel + PostgreSQL system for academic and financial management, covering design, backend logic, and production deployment.',
+                    'Introduced CI/CD pipelines and delivered a multilingual website using SvelteKit and Sanity CMS, enabling reliable releases and non-technical content management.'
                 ],
-                tags: ['Full-Stack', 'Production']
+                tags: ['Backend', 'Production']
             },
             {
                 org: 'AWS Cloud Club Anahuac Mayab',
@@ -103,19 +102,21 @@ export const content = {
                 problem:
                     'The event required reliable registration processing, file handling, and operational coordination at production scale.',
                 solution:
-                    'Designed an event-driven architecture on Google Cloud using Cloud Run, Pub/Sub, Firestore, and Terraform, then built a FastAPI service for registrations, uploads, and integrations.',
+                    'Designed an event-driven system using Cloud Run, Pub/Sub, Firestore, and Terraform, then built a FastAPI service for registrations, uploads, and external integrations.',
                 impact: [
-                    'Handled 500+ registrations, file uploads, and external service integrations.',
-                    'Implemented idempotent workflows with state tracking and secure access patterns.'
+                    'Handled 500+ registrations, file uploads, and external integrations.',
+                    'Redesigned the system with idempotent processing to eliminate duplicate entries under concurrent load.',
+                    'Implemented CI/CD pipelines with GitHub Actions and Terraform for automated deployments.'
                 ],
                 stack: [
                     'FastAPI',
                     'Python',
-                    'GCP',
+                    'Google Cloud',
                     'Cloud Run',
                     'Pub/Sub',
                     'Firestore',
-                    'Terraform'
+                    'Terraform',
+                    'GitHub Actions'
                 ],
                 links: [
                     { label: 'Live Site', href: 'https://smmun.com' },
@@ -171,8 +172,8 @@ export const content = {
                 solution:
                     'Built with Rust, GTK4, and libadwaita; distributed through Flathub, Snap, AppImage, AUR, and Windows EXE.',
                 impact: [
-                    '4.6k+ downloads.',
-                    'Designed a concurrent, cross-platform Rust architecture focused on memory safety and reliability.'
+                    '5k+ downloads on Flathub.',
+                    'Built a concurrent, memory-safe Rust architecture for a cross-platform desktop app.'
                 ],
                 stack: ['Rust', 'GTK4', 'libadwaita'],
                 links: [
@@ -196,8 +197,8 @@ export const content = {
                 solution:
                     'Contributed patches to the Linux kernel and Microsoft DirectXTex to resolve concrete platform compatibility problems.',
                 impact: [
-                    'Fixed microphone and audio chipset support for a laptop model in the Linux kernel.',
-                    'Corrected Linux PNG export compatibility in DirectXTex using a libpng-based path.'
+                    'Linux kernel (ALSA/SoC): contributed a patch restoring microphone support for a specific chipset.',
+                    'Microsoft DirectXTex: fixed image export issues and improved error handling in PNG processing.'
                 ],
                 stack: ['C', 'C++', 'Linux', 'libpng'],
                 links: [
@@ -258,7 +259,7 @@ export const content = {
             email: 'brunoanconasala@gmail.com',
             phone: '(999) 903-3025',
             headline:
-                'Construyo software cloud-native, backend y de sistemas que resuelve problemas operativos reales.',
+                'Construyo software cloud-native, backend y de sistemas con enfoque en infraestructura confiable y uso operativo real.',
             availability:
                 'Abierto a practicas profesionales, proyectos colaborativos y oportunidades de ingenieria en backend, cloud y sistemas.',
             links: {
@@ -277,7 +278,7 @@ export const content = {
             { label: 'Google Cybersecurity Certificate', icon: 'shield' }
         ],
         aboutLead:
-            'Mi trabajo abarca backends cloud-native, entrega de producto backend e ingenieria de sistemas. Me importa la confiabilidad, el mantenimiento a largo plazo y construir software que los equipos realmente puedan operar.',
+            'Me especializo en sistemas cloud-native, infraestructura backend y ciberseguridad. Mi trabajo se enfoca en confiabilidad, mantenibilidad y software que resista el uso operativo real.',
         cvFocusItems: [
             'Backends cloud-native, infraestructura y operaciones confiables.',
             'Software de produccion para flujos institucionales y orientados a eventos.',
@@ -286,7 +287,7 @@ export const content = {
         skillGroups: [
             {
                 title: 'Lenguajes',
-                items: ['Rust', 'C++', 'Python', 'C', 'Go', 'JavaScript', 'PHP']
+                items: ['C', 'C++', 'Rust', 'Python', 'JavaScript', 'Go', 'PHP']
             },
             {
                 title: 'Frameworks',
@@ -294,7 +295,7 @@ export const content = {
             },
             {
                 title: 'Nube y herramientas',
-                items: ['AWS', 'Google Cloud', 'Docker', 'Terraform', 'CI/CD', 'Git', 'Linux']
+                items: ['Google Cloud', 'AWS', 'Docker', 'Terraform', 'GitHub Actions', 'Linux']
             },
             {
                 title: 'Areas',
@@ -312,11 +313,10 @@ export const content = {
                 role: 'Ingeniero de Software',
                 period: 'Feb 2025 - presente',
                 highlights: [
-                    'Disene y desarrolle un sistema administrativo modular con Laravel y PostgreSQL.',
-                    'Implemente pipelines de CI/CD y pruebas estructuradas, mejorando la confiabilidad del despliegue.',
-                    'Desarrolle un sitio web institucional multilingue con SvelteKit y Sanity CMS, permitiendo que personal no tecnico gestione el contenido de forma independiente.'
+                    'Ingeniero principal en un sistema administrativo modular con Laravel y PostgreSQL para control académico y financiero, cubriendo diseno, logica backend y despliegue en produccion.',
+                    'Implemente pipelines de CI/CD y desarrolle un sitio web multilingue usando SvelteKit + Sanity CMS, habilitando despliegues confiables y gestion de contenido por personal no tecnico.'
                 ],
-                tags: ['Full-Stack', 'Produccion']
+                tags: ['Backend', 'Produccion']
             },
             {
                 org: 'AWS Cloud Club Anahuac Mayab',
@@ -355,19 +355,21 @@ export const content = {
                 problem:
                     'El evento necesitaba procesar registros, archivos y coordinacion operativa de forma confiable y a escala real.',
                 solution:
-                    'Disene una arquitectura orientada a eventos en Google Cloud usando Cloud Run, Pub/Sub, Firestore y Terraform, y construi un servicio FastAPI para registros, cargas e integraciones.',
+                    'Disene un sistema orientado a eventos usando Cloud Run, Pub/Sub, Firestore y Terraform, y construi un servicio FastAPI para registros, cargas e integraciones.',
                 impact: [
-                    'Gestiona 500+ registros, cargas de archivos e integraciones con servicios externos.',
-                    'Implemente flujos idempotentes con seguimiento de estado y patrones de acceso seguro.'
+                    'Gestiona 500+ registros e integraciones externas.',
+                    'Redisené el sistema con procesamiento idempotente para eliminar duplicados bajo concurrencia.',
+                    'Implemente pipelines de CI/CD con GitHub Actions y Terraform para despliegues automatizados.'
                 ],
                 stack: [
                     'FastAPI',
                     'Python',
-                    'GCP',
+                    'Google Cloud',
                     'Cloud Run',
                     'Pub/Sub',
                     'Firestore',
-                    'Terraform'
+                    'Terraform',
+                    'GitHub Actions'
                 ],
                 links: [
                     { label: 'Sitio', href: 'https://smmun.com' },
@@ -424,8 +426,8 @@ export const content = {
                 solution:
                     'Lo construi con Rust, GTK4 y libadwaita; y lo distribui por Flathub, Snap, AppImage, AUR y Windows EXE.',
                 impact: [
-                    'Mas de 4.6k descargas.',
-                    'Disene una arquitectura concurrente en Rust enfocada en seguridad de memoria y confiabilidad.'
+                    'Mas de 5,000 descargas en Flathub.',
+                    'Desarrolle una arquitectura concurrente y segura en memoria para una aplicacion de escritorio multiplataforma en Rust.'
                 ],
                 stack: ['Rust', 'GTK4', 'libadwaita'],
                 links: [
@@ -449,8 +451,8 @@ export const content = {
                 solution:
                     'Contribui parches al kernel de Linux y a Microsoft DirectXTex para resolver problemas concretos de compatibilidad en plataforma.',
                 impact: [
-                    'Corregi soporte de microfono y chipset de audio para un modelo de laptop en el kernel de Linux.',
-                    'Arregle la compatibilidad de exportacion PNG en Linux en DirectXTex usando una ruta basada en libpng.'
+                    'Linux kernel (ALSA/SoC): contribui un parche que restauro el microfono para un chipset especifico.',
+                    'Microsoft DirectXTex: corregi errores de exportacion y mejore el manejo de errores para PNGs.'
                 ],
                 stack: ['C', 'C++', 'Linux', 'libpng'],
                 links: [
