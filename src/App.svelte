@@ -68,7 +68,7 @@
         </a>
     </Section>
 
-    <Section id="highlights" eyebrow="1 // SIGNAL" title={$_('sections.highlights')}>
+    <Section id="highlights" eyebrow="1 // SIGNAL" title={$_('sections.highlights')} compact>
         <div class="cert-strip" aria-label={$_('highlights.aria')}>
             {#each certifications as item}
                 <span>
@@ -168,7 +168,7 @@
         </div>
     </Section>
 
-    <Section id="cv" eyebrow="5 // DOWNLOAD" title={$_('sections.cv')}>
+    <Section id="cv" eyebrow="5 // DOWNLOAD" title={$_('sections.cv')} compact>
         <p class="section-lead">{$_('cv.lead')}</p>
         <div class="cv-actions">
             <a class="btn primary" href="/Bruno-Ancona-CV-English.pdf" download
