@@ -1,9 +1,15 @@
-# Package Managers
+# Package managers
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
 bun.lock
 bun.lockb
 
-# Miscellaneous
+# Generated and local-only files
+CV English.md
+CV Español.md
+stitch-downloads/
+.codex/
+.vscode/
+dist/
 /static/

@@ -3,9 +3,16 @@
     export let compact = false;
 
     $: points = compact ? project.impact.slice(0, 2) : project.impact;
+    $: accent = ['#67e3ff', '#ff57b6', '#fdca40', '#ff6b6b'][
+        project.slug.split('').reduce((total, letter) => total + letter.charCodeAt(0), 0) % 4
+    ];
 </script>
 
-<article class="project-card">
+<article class="project-card" style={`--card-accent: ${accent}`}>
+    <div class="project-index mono">
+        <span aria-hidden="true">•</span>
+        <span>{project.slug}</span>
+    </div>
     <div class="project-header">
         <h3>{project.title}</h3>
         <p class="role mono">{project.role}</p>
@@ -34,7 +41,9 @@
     {#if project.links.length}
         <div class="links">
             {#each project.links as link}
-                <a href={link.href} target="_blank" rel="noreferrer noopener">{link.label}</a>
+                <a href={link.href} target="_blank" rel="noreferrer noopener"
+                    >{link.label}<span aria-hidden="true"> ↗</span></a
+                >
             {/each}
         </div>
     {/if}

@@ -1,71 +1,80 @@
 <script>
     const stars = [
-        { x: 6, y: 12, r: 0.9, o: 0.42 },
-        { x: 12, y: 26, r: 1.2, o: 0.78 },
-        { x: 18, y: 18, r: 0.8, o: 0.34 },
-        { x: 22, y: 34, r: 0.9, o: 0.46 },
-        { x: 28, y: 14, r: 1.4, o: 0.82 },
-        { x: 34, y: 24, r: 0.7, o: 0.28 },
-        { x: 40, y: 12, r: 1.1, o: 0.5 },
-        { x: 46, y: 30, r: 1.6, o: 0.86 },
-        { x: 52, y: 16, r: 0.8, o: 0.33 },
-        { x: 58, y: 22, r: 1.3, o: 0.7 },
-        { x: 64, y: 10, r: 0.9, o: 0.44 },
-        { x: 70, y: 28, r: 1.7, o: 0.88 },
-        { x: 76, y: 12, r: 1.1, o: 0.54 },
-        { x: 82, y: 20, r: 0.8, o: 0.32 },
-        { x: 88, y: 14, r: 1.2, o: 0.72 },
-        { x: 93, y: 8, r: 0.9, o: 0.4 },
-        { x: 10, y: 52, r: 0.8, o: 0.34 },
-        { x: 16, y: 62, r: 1.4, o: 0.82 },
-        { x: 22, y: 56, r: 1.1, o: 0.56 },
-        { x: 30, y: 68, r: 0.7, o: 0.24 },
-        { x: 38, y: 58, r: 1.2, o: 0.64 },
-        { x: 45, y: 72, r: 1.6, o: 0.86 },
-        { x: 52, y: 60, r: 0.9, o: 0.36 },
-        { x: 60, y: 74, r: 1.1, o: 0.52 },
-        { x: 68, y: 62, r: 0.8, o: 0.3 },
-        { x: 74, y: 70, r: 1.5, o: 0.82 },
-        { x: 82, y: 58, r: 1, o: 0.48 },
-        { x: 90, y: 66, r: 1.3, o: 0.72 },
-        { x: 95, y: 52, r: 0.8, o: 0.3 },
-        { x: 8, y: 84, r: 1, o: 0.44 },
-        { x: 18, y: 90, r: 1.7, o: 0.9 },
-        { x: 28, y: 82, r: 0.9, o: 0.34 },
-        { x: 36, y: 92, r: 1.2, o: 0.64 },
-        { x: 44, y: 86, r: 0.8, o: 0.28 },
-        { x: 56, y: 90, r: 1.3, o: 0.7 },
-        { x: 66, y: 84, r: 0.9, o: 0.38 },
-        { x: 76, y: 92, r: 1.4, o: 0.8 },
-        { x: 86, y: 86, r: 1.1, o: 0.5 },
-        { x: 94, y: 94, r: 0.8, o: 0.26 }
+        [4, 9, 1.1, 0.5],
+        [9, 24, 1.7, 0.85],
+        [15, 15, 0.8, 0.42],
+        [20, 35, 1.1, 0.62],
+        [26, 8, 1.5, 0.8],
+        [31, 27, 0.7, 0.35],
+        [37, 14, 1.2, 0.65],
+        [43, 33, 1.7, 0.88],
+        [49, 10, 0.8, 0.38],
+        [55, 24, 1.3, 0.72],
+        [61, 7, 1, 0.54],
+        [67, 31, 1.8, 0.92],
+        [73, 12, 1.1, 0.65],
+        [79, 23, 0.8, 0.4],
+        [86, 9, 1.4, 0.78],
+        [94, 28, 0.9, 0.48],
+        [6, 49, 0.8, 0.4],
+        [13, 64, 1.5, 0.82],
+        [19, 54, 1.1, 0.58],
+        [25, 72, 0.7, 0.34],
+        [33, 60, 1.3, 0.7],
+        [40, 78, 1.8, 0.9],
+        [47, 57, 0.9, 0.44],
+        [53, 72, 1.2, 0.62],
+        [59, 49, 0.8, 0.38],
+        [65, 66, 1.6, 0.84],
+        [72, 53, 1, 0.52],
+        [78, 76, 1.4, 0.76],
+        [84, 60, 0.8, 0.38],
+        [91, 69, 1.3, 0.74],
+        [96, 48, 0.8, 0.36],
+        [7, 87, 1.1, 0.52],
+        [17, 94, 1.8, 0.92],
+        [29, 84, 0.9, 0.42],
+        [36, 96, 1.3, 0.7],
+        [48, 89, 0.8, 0.34],
+        [58, 95, 1.4, 0.78],
+        [69, 86, 0.9, 0.44],
+        [81, 92, 1.5, 0.84],
+        [90, 84, 1.1, 0.56],
+        [97, 96, 0.8, 0.32]
     ];
 
     const constellations = [
         [
-            { x: 12, y: 26 },
-            { x: 18, y: 18 },
-            { x: 28, y: 14 },
-            { x: 40, y: 12 },
-            { x: 46, y: 30 }
+            [9, 24],
+            [15, 15],
+            [26, 8],
+            [37, 14],
+            [43, 33]
         ],
         [
-            { x: 70, y: 28 },
-            { x: 76, y: 12 },
-            { x: 88, y: 14 },
-            { x: 82, y: 20 }
+            [67, 31],
+            [73, 12],
+            [86, 9],
+            [79, 23]
         ],
         [
-            { x: 68, y: 62 },
-            { x: 74, y: 70 },
-            { x: 82, y: 58 },
-            { x: 90, y: 66 }
+            [59, 49],
+            [65, 66],
+            [72, 53],
+            [84, 60],
+            [91, 69]
+        ],
+        [
+            [7, 87],
+            [17, 94],
+            [29, 84],
+            [36, 96]
         ]
     ];
 
     const pathFromPoints = (points) =>
         points
-            .map((point, index) => `${index === 0 ? 'M' : 'L'} ${point.x * 10} ${point.y * 10}`)
+            .map((point, index) => `${index === 0 ? 'M' : 'L'} ${point[0] * 10} ${point[1] * 10}`)
             .join(' ');
 </script>
 
@@ -77,23 +86,45 @@
 >
     <defs>
         <radialGradient id="star-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#f7fbff" stop-opacity="0.95" />
-            <stop offset="100%" stop-color="#7aa6ff" stop-opacity="0" />
+            <stop offset="0%" stop-color="#fff" stop-opacity="1" />
+            <stop offset="42%" stop-color="#67e3ff" stop-opacity="0.5" />
+            <stop offset="100%" stop-color="#67e3ff" stop-opacity="0" />
         </radialGradient>
+        <linearGradient id="constellation-line" x1="0" x2="1">
+            <stop offset="0" stop-color="#67e3ff" />
+            <stop offset="0.5" stop-color="#ff57b6" />
+            <stop offset="1" stop-color="#fdca40" />
+        </linearGradient>
     </defs>
 
-    {#each constellations as points}
-        <path d={pathFromPoints(points)} />
-    {/each}
+    <g class="constellations">
+        {#each constellations as points}
+            <path d={pathFromPoints(points)} />
+        {/each}
+    </g>
 
-    {#each stars as star}
-        <circle
-            class="glow"
-            cx={star.x * 10}
-            cy={star.y * 10}
-            r={star.r * 1.35}
-            style={`opacity:${Math.min(star.o * 0.12, 0.1)}`}
+    <g class="tiny-stars">
+        {#each stars as star}
+            <circle
+                class="glow"
+                cx={star[0] * 10}
+                cy={star[1] * 10}
+                r={star[2] * 5.5}
+                style={`opacity:${star[3] * 0.17}`}
+            />
+            <circle cx={star[0] * 10} cy={star[1] * 10} r={star[2]} style={`opacity:${star[3]}`} />
+        {/each}
+    </g>
+
+    <!-- Four-point glyph adapted from the supplied SMMUN star system. -->
+    <g class="brand-glyph glyph-one" transform="translate(82 420) scale(.32)">
+        <path
+            d="M82 0c6 31 14 50 36 61 14 7 29 10 45 13-13 3-25 6-37 10-25 9-34 33-40 54l-4 18-5-19c-5-21-14-44-39-53-12-5-24-7-38-10 16-3 31-6 45-13C67 50 76 31 82 0Z"
         />
-        <circle cx={star.x * 10} cy={star.y * 10} r={star.r} style={`opacity:${star.o}`} />
-    {/each}
+    </g>
+    <g class="brand-glyph glyph-two" transform="translate(845 720) scale(.42)">
+        <path
+            d="M82 0c6 31 14 50 36 61 14 7 29 10 45 13-13 3-25 6-37 10-25 9-34 33-40 54l-4 18-5-19c-5-21-14-44-39-53-12-5-24-7-38-10 16-3 31-6 45-13C67 50 76 31 82 0Z"
+        />
+    </g>
 </svg>

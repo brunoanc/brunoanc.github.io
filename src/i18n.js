@@ -1,4 +1,4 @@
-import { addMessages, init, locale } from 'svelte-i18n';
+import { derived, writable } from 'svelte/store';
 
 const messages = {
     en: {
@@ -8,7 +8,8 @@ const messages = {
             about: 'About',
             cv: 'CV',
             contact: 'Contact',
-            sections: 'Sections'
+            sections: 'Sections',
+            close: 'Close menu'
         },
         locale: {
             label: 'Language',
@@ -17,7 +18,8 @@ const messages = {
         },
         actions: {
             viewProjects: 'View Projects',
-            viewCv: 'View CV'
+            viewCv: 'View CV',
+            explore: 'Explore'
         },
         home: {
             kicker: 'Distributed systems · Cloud · Security',
@@ -67,7 +69,8 @@ const messages = {
             about: 'Perfil',
             cv: 'CV',
             contact: 'Contacto',
-            sections: 'Secciones'
+            sections: 'Secciones',
+            close: 'Cerrar menú'
         },
         locale: {
             label: 'Idioma',
@@ -76,7 +79,8 @@ const messages = {
         },
         actions: {
             viewProjects: 'Ver proyectos',
-            viewCv: 'Ver CV'
+            viewCv: 'Ver CV',
+            explore: 'Explorar'
         },
         home: {
             kicker: 'Sistemas distribuidos · Cloud · Seguridad',
@@ -121,10 +125,6 @@ const messages = {
     }
 };
 
-for (const [key, value] of Object.entries(messages)) {
-    addMessages(key, value);
-}
-
 const normalizeLocale = (value) => (value && value.toLowerCase().startsWith('es') ? 'es' : 'en');
 
 const getInitialLocale = () => {
@@ -135,12 +135,16 @@ const getInitialLocale = () => {
     return normalizeLocale(window.navigator.language || window.navigator.languages?.[0]);
 };
 
-export const initI18n = () => {
-    init({
-        fallbackLocale: 'en',
-        initialLocale: getInitialLocale()
-    });
+export const locale = writable('en');
+
+const translate = (language, key) => {
+    const catalog = messages[language] || messages.en;
+    return key.split('.').reduce((value, segment) => value?.[segment], catalog) ?? key;
 };
+
+export const _ = derived(locale, (language) => (key) => translate(language, key));
+
+export const initI18n = () => locale.set(getInitialLocale());
 
 export const setAppLocale = (value) => {
     locale.set(normalizeLocale(value));
