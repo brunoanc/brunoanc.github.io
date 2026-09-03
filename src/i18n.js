@@ -20,8 +20,8 @@ const messages = {
             viewCv: 'View CV'
         },
         home: {
-            kicker: 'Cloud-native systems · Backend · Security',
-            lead: 'Software engineering student with hands-on experience in cloud-native systems, backend development, and cybersecurity.',
+            kicker: 'Distributed systems · Cloud · Security',
+            lead: 'Software engineering student focused on distributed systems, cloud infrastructure, backend engineering, and cybersecurity.',
             imageAlt: 'Terminal-style profile snippet with skills and languages.'
         },
         sections: {
@@ -40,13 +40,13 @@ const messages = {
             all: 'See full project list'
         },
         cv: {
-            lead: 'Software engineering student with hands-on experience in cloud-native systems, backend development, and cybersecurity.',
+            lead: 'Software engineering student focused on distributed systems, cloud infrastructure, backend engineering, and cybersecurity.',
             downloadEn: 'Download CV (English)',
             downloadEs: 'Download CV (Spanish)',
             focus: 'Current Focus',
             contact: 'Contact',
             focusItems: [
-                'Cloud-native backend systems, infrastructure, and reliable operations.',
+                'Distributed systems, cloud infrastructure, and reliable operations.',
                 'Production software for institutional and event-driven workflows.',
                 'Cross-platform tooling and security-aware engineering practices.'
             ]
@@ -79,8 +79,8 @@ const messages = {
             viewCv: 'Ver CV'
         },
         home: {
-            kicker: 'Sistemas cloud-native · Backend · Seguridad',
-            lead: 'Estudiante de Ingenieria en Software con experiencia en sistemas cloud-native, desarrollo backend y ciberseguridad.',
+            kicker: 'Sistemas distribuidos · Cloud · Seguridad',
+            lead: 'Estudiante de Ingenieria en TI con experiencia en sistemas cloud-native, infraestructura backend y ciberseguridad.',
             imageAlt: 'Fragmento de terminal con informacion de perfil, lenguajes y habilidades.'
         },
         sections: {
@@ -99,13 +99,13 @@ const messages = {
             all: 'Ver lista completa de proyectos'
         },
         cv: {
-            lead: 'Estudiante de Ingenieria en Software con experiencia en sistemas cloud-native, desarrollo backend y ciberseguridad.',
+            lead: 'Estudiante de Ingenieria en TI con experiencia en sistemas cloud-native, infraestructura backend y ciberseguridad.',
             downloadEn: 'Descargar CV (Ingles)',
             downloadEs: 'Descargar CV (Espanol)',
             focus: 'Enfoque actual',
             contact: 'Contacto',
             focusItems: [
-                'Backends cloud-native, infraestructura y operaciones confiables.',
+                'Sistemas distribuidos, infraestructura cloud y operaciones confiables.',
                 'Software de produccion para flujos institucionales y orientados a eventos.',
                 'Herramientas multiplataforma y practicas de ingenieria con enfoque en seguridad.'
             ]

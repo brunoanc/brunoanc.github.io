@@ -4,9 +4,9 @@ export const content = {
             name: 'Bruno Ancona Sala',
             location: 'Merida, MX',
             email: 'brunoanconasala@gmail.com',
-            phone: '(999) 903-3025',
+            phone: '+52 (999) 903-3025',
             headline:
-                'I build cloud-native, backend, and systems software with a focus on reliable infrastructure and real operational use.',
+                'I build distributed systems, cloud infrastructure, and backend software for real operational use.',
             availability:
                 'Open to internships, collaborative projects, and engineering opportunities in backend, cloud, and systems development.',
             links: {
@@ -16,6 +16,8 @@ export const content = {
             }
         },
         certifications: [
+            { label: 'HackDef 10 CTF - Finalist (top 10 teams nationally)', icon: 'trophy' },
+            { label: 'AHAU CTF 2026 - 2nd Place (regional competition)', icon: 'trophy' },
             { label: 'Google Cloud Certified - Associate Cloud Engineer', icon: 'cloud' },
             { label: 'AWS Certified Cloud Practitioner (CLF-C02)', icon: 'cloud' },
             {
@@ -25,9 +27,9 @@ export const content = {
             { label: 'Google Cybersecurity Certificate', icon: 'shield' }
         ],
         aboutLead:
-            'I specialize in cloud-native systems, backend infrastructure, and cybersecurity. My work focuses on reliability, maintainability, and software that can hold up under real operational use.',
+            'I focus on distributed systems, cloud infrastructure, backend engineering, and cybersecurity. My work emphasizes reliability, maintainability, and software that holds up under real operational use.',
         cvFocusItems: [
-            'Cloud-native backend systems, infrastructure, and reliable operations.',
+            'Distributed systems, cloud infrastructure, and reliable operations.',
             'Production software for institutional and event-driven workflows.',
             'Cross-platform tooling and security-aware engineering practices.'
         ],
@@ -47,8 +49,9 @@ export const content = {
             {
                 title: 'Domains',
                 items: [
-                    'Cloud-Native Systems',
-                    'Backend Development',
+                    'Distributed Systems',
+                    'Cloud Infrastructure',
+                    'Backend Engineering',
                     'Cybersecurity',
                     'Reverse Engineering'
                 ]
@@ -60,27 +63,23 @@ export const content = {
                 role: 'Software Engineer',
                 period: 'Feb 2025 - Present',
                 highlights: [
-                    'Sole engineer on a modular Laravel + PostgreSQL system for academic and financial management, covering design, backend logic, and production deployment.',
+                    'Sole engineer responsible for a modular Laravel + PostgreSQL system for academic and financial management, covering system design, backend logic, and production deployment.',
                     'Introduced CI/CD pipelines and delivered a multilingual website using SvelteKit and Sanity CMS, enabling reliable releases and non-technical content management.'
                 ],
                 tags: ['Backend', 'Production']
             },
             {
-                org: 'AWS Cloud Club Anahuac Mayab',
-                role: 'Director of Technology',
-                period: '2026 - Present',
-                highlights: [
-                    'Lead cloud architecture initiatives, deliver AWS workshops, and mentor members on real projects.'
-                ],
-                tags: ['Leadership', 'Cloud']
+                org: 'Southeastern Mexican Model UN',
+                role: 'Secretary-General',
+                period: 'May 2026 - Present',
+                highlights: [],
+                tags: ['Leadership', 'Operations']
             },
             {
-                org: 'Southeastern Mexican Model UN',
-                role: 'Secretary of Finance and Technology',
-                period: '2024 - Present',
-                highlights: [
-                    'Oversee digital systems and financial planning for a regional Model UN conference.'
-                ],
+                org: 'AWS Cloud Club Anahuac Mayab',
+                role: 'Director of Technology',
+                period: 'Feb 2026 - Present',
+                highlights: [],
                 tags: ['Operations', 'Leadership']
             }
         ],
@@ -96,16 +95,16 @@ export const content = {
             {
                 slug: 'smmun',
                 title: 'SMMUN.com',
-                role: 'Secretary of Finance and Technology / Cloud-Native Developer',
+                role: 'Lead Software Engineer',
                 summary:
-                    'Cloud-native web application for a Model United Nations conference, built on Google Cloud.',
+                    'Cloud-native admissions and registration system for a Model United Nations conference, built on Google Cloud.',
                 problem:
                     'The event required reliable registration processing, file handling, and operational coordination at production scale.',
                 solution:
-                    'Designed an event-driven system using Cloud Run, Pub/Sub, Firestore, and Terraform, then built a FastAPI service for registrations, uploads, and external integrations.',
+                    'Designed an event-driven system using Cloud Run, Pub/Sub, and Firestore, provisioned with Terraform, then built a FastAPI service for registrations and external integrations.',
                 impact: [
-                    'Handled 500+ registrations, file uploads, and external integrations.',
-                    'Redesigned the system with idempotent processing to eliminate duplicate entries under concurrent load.',
+                    'Handled 500+ registrations.',
+                    'Redesigned processing to be idempotent and eliminate duplicate entries under concurrent load.',
                     'Implemented CI/CD pipelines with GitHub Actions and Terraform for automated deployments.'
                 ],
                 stack: [
@@ -154,7 +153,7 @@ export const content = {
                 solution:
                     'Built the core Laravel + PostgreSQL system, added CI/CD and structured testing, and shipped a multilingual SvelteKit + Sanity website for staff-managed content.',
                 impact: [
-                    'Supports student registration, payments, careers, and related institutional workflows.',
+                    'Supports student registration, payments, careers, and academic and financial management workflows.',
                     'Improved deployment reliability and enabled non-technical staff to manage multilingual content independently.'
                 ],
                 stack: ['Laravel', 'PHP', 'PostgreSQL', 'SvelteKit', 'Sanity CMS', 'CI/CD'],
@@ -197,7 +196,7 @@ export const content = {
                 solution:
                     'Contributed patches to the Linux kernel and Microsoft DirectXTex to resolve concrete platform compatibility problems.',
                 impact: [
-                    'Linux kernel (ALSA/SoC): contributed a patch restoring microphone support for a specific chipset.',
+                    'Linux Kernel (ALSA/SoC): contributed a patch restoring microphone support for a specific chipset.',
                     'Microsoft DirectXTex: fixed image export issues and improved error handling in PNG processing.'
                 ],
                 stack: ['C', 'C++', 'Linux', 'libpng'],
@@ -257,9 +256,9 @@ export const content = {
             name: 'Bruno Ancona Sala',
             location: 'Merida, MX',
             email: 'brunoanconasala@gmail.com',
-            phone: '(999) 903-3025',
+            phone: '+52 (999) 903-3025',
             headline:
-                'Construyo software cloud-native, backend y de sistemas con enfoque en infraestructura confiable y uso operativo real.',
+                'Construyo sistemas distribuidos, infraestructura cloud y software backend para uso operativo real.',
             availability:
                 'Abierto a practicas profesionales, proyectos colaborativos y oportunidades de ingenieria en backend, cloud y sistemas.',
             links: {
@@ -269,6 +268,8 @@ export const content = {
             }
         },
         certifications: [
+            { label: 'HackDef 10 CTF - Finalista (top 10 equipos a nivel nacional)', icon: 'trophy' },
+            { label: 'AHAU CTF 2026 - 2do lugar (competencia regional)', icon: 'trophy' },
             { label: 'Google Cloud Certified - Associate Cloud Engineer', icon: 'cloud' },
             { label: 'AWS Certified Cloud Practitioner (CLF-C02)', icon: 'cloud' },
             {
@@ -278,9 +279,9 @@ export const content = {
             { label: 'Google Cybersecurity Certificate', icon: 'shield' }
         ],
         aboutLead:
-            'Me especializo en sistemas cloud-native, infraestructura backend y ciberseguridad. Mi trabajo se enfoca en confiabilidad, mantenibilidad y software que resista el uso operativo real.',
+            'Me especializo en sistemas distribuidos, infraestructura cloud, backend y ciberseguridad. Mi trabajo se enfoca en confiabilidad, mantenibilidad y software que resista el uso operativo real.',
         cvFocusItems: [
-            'Backends cloud-native, infraestructura y operaciones confiables.',
+            'Sistemas distribuidos, infraestructura cloud y operaciones confiables.',
             'Software de produccion para flujos institucionales y orientados a eventos.',
             'Herramientas multiplataforma y practicas de ingenieria con enfoque en seguridad.'
         ],
@@ -300,8 +301,9 @@ export const content = {
             {
                 title: 'Areas',
                 items: [
-                    'Sistemas cloud-native',
-                    'Desarrollo backend',
+                    'Sistemas distribuidos',
+                    'Infraestructura cloud',
+                    'Ingenieria backend',
                     'Ciberseguridad',
                     'Ingenieria inversa'
                 ]
@@ -313,27 +315,23 @@ export const content = {
                 role: 'Ingeniero de Software',
                 period: 'Feb 2025 - presente',
                 highlights: [
-                    'Ingeniero principal en un sistema administrativo modular con Laravel y PostgreSQL para control académico y financiero, cubriendo diseno, logica backend y despliegue en produccion.',
+                    'Ingeniero principal en un sistema administrativo modular con Laravel y PostgreSQL para control academico y financiero, cubriendo diseno, logica backend y despliegue en produccion.',
                     'Implemente pipelines de CI/CD y desarrolle un sitio web multilingue usando SvelteKit + Sanity CMS, habilitando despliegues confiables y gestion de contenido por personal no tecnico.'
                 ],
                 tags: ['Backend', 'Produccion']
             },
             {
-                org: 'AWS Cloud Club Anahuac Mayab',
-                role: 'Director de Tecnología',
-                period: '2026 - presente',
-                highlights: [
-                    'Lidero iniciativas de arquitectura cloud, imparto talleres de AWS y asesoro en proyectos practicos.'
-                ],
-                tags: ['Liderazgo', 'Cloud']
+                org: 'Modelo de Naciones Unidas del Sureste Mexicano',
+                role: 'Secretario General',
+                period: 'May 2026 - presente',
+                highlights: [],
+                tags: ['Liderazgo', 'Operaciones']
             },
             {
-                org: 'Modelo de Naciones Unidas del Sureste Mexicano',
-                role: 'Secretario de Tecnología',
-                period: '2024 - presente',
-                highlights: [
-                    'Superviso los sistemas digitales y la planificacion financiera de una conferencia MUN regional.'
-                ],
+                org: 'AWS Cloud Club Anahuac Mayab',
+                role: 'Director de Tecnologia',
+                period: 'Feb 2026 - presente',
+                highlights: [],
                 tags: ['Operaciones', 'Liderazgo']
             }
         ],
@@ -349,16 +347,16 @@ export const content = {
             {
                 slug: 'smmun',
                 title: 'SMMUN.com',
-                role: 'Secretario de Finanzas y Tecnología / Desarrollador cloud-native',
+                role: 'Aplicacion web cloud-native (Google Cloud)',
                 summary:
                     'Aplicacion web cloud-native para una conferencia de Modelo de Naciones Unidas, construida sobre Google Cloud.',
                 problem:
                     'El evento necesitaba procesar registros, archivos y coordinacion operativa de forma confiable y a escala real.',
                 solution:
-                    'Disene un sistema orientado a eventos usando Cloud Run, Pub/Sub, Firestore y Terraform, y construi un servicio FastAPI para registros, cargas e integraciones.',
+                    'Disene un sistema orientado a eventos usando Cloud Run, Pub/Sub y Firestore, aprovisionado con Terraform, y construi un servicio FastAPI para registros e integraciones externas.',
                 impact: [
-                    'Gestiona 500+ registros e integraciones externas.',
-                    'Redisené el sistema con procesamiento idempotente para eliminar duplicados bajo concurrencia.',
+                    'Gestiona 500+ registros.',
+                    'Redisene el sistema con procesamiento idempotente para eliminar duplicados bajo concurrencia.',
                     'Implemente pipelines de CI/CD con GitHub Actions y Terraform para despliegues automatizados.'
                 ],
                 stack: [
@@ -407,7 +405,7 @@ export const content = {
                 solution:
                     'Construyi el sistema principal con Laravel + PostgreSQL, agregue CI/CD y pruebas estructuradas, y publique un sitio multilingue con SvelteKit + Sanity para que el personal gestione contenido.',
                 impact: [
-                    'Soporta inscripciones, pagos, carreras y otros flujos institucionales.',
+                    'Soporta inscripciones, pagos, carreras y flujos de gestion academica y financiera.',
                     'Mejoro la confiabilidad del despliegue y permitio que personal no tecnico gestione contenido multilingue de forma independiente.'
                 ],
                 stack: ['Laravel', 'PHP', 'PostgreSQL', 'SvelteKit', 'Sanity CMS', 'CI/CD'],
@@ -451,8 +449,8 @@ export const content = {
                 solution:
                     'Contribui parches al kernel de Linux y a Microsoft DirectXTex para resolver problemas concretos de compatibilidad en plataforma.',
                 impact: [
-                    'Linux kernel (ALSA/SoC): contribui un parche que restauro el microfono para un chipset especifico.',
-                    'Microsoft DirectXTex: corregi errores de exportacion y mejore el manejo de errores para PNGs.'
+                    'Linux kernel (ALSA/SoC): contribui un parche que restauro el soporte de microfono para un chipset especifico.',
+                    'Microsoft DirectXTex: corregi errores de exportacion de imagenes y mejore el manejo de errores para PNGs.'
                 ],
                 stack: ['C', 'C++', 'Linux', 'libpng'],
                 links: [
