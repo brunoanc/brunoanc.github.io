@@ -1,7 +1,7 @@
 export const content = {
     en: {
         profile: {
-            name: 'Bruno Ancona Sala',
+            name: 'Bruno Ancona',
             location: 'Merida, MX',
             email: 'brunoanconasala@gmail.com',
             phone: '+52 (999) 903-3025',
@@ -16,15 +16,32 @@ export const content = {
             }
         },
         certifications: [
-            { label: 'HackDef 10 CTF - Finalist (top 10 teams nationally)', icon: 'trophy' },
-            { label: 'AHAU CTF 2026 - 2nd Place (regional competition)', icon: 'trophy' },
-            { label: 'Google Cloud Certified - Associate Cloud Engineer', icon: 'cloud' },
-            { label: 'AWS Certified Cloud Practitioner (CLF-C02)', icon: 'cloud' },
+            {
+                label: 'HackDef 10 CTF - Finalist (top 10 teams nationally)',
+                icon: 'trophy',
+                date: 'Aug 2026'
+            },
+            {
+                label: 'AHAU CTF 2026 - 2nd Place (regional competition)',
+                icon: 'trophy',
+                date: 'Aug 2026'
+            },
+            {
+                label: 'Google Cloud Certified - Associate Cloud Engineer',
+                icon: 'cloud',
+                date: 'Apr 2026'
+            },
+            {
+                label: 'AWS Certified Cloud Practitioner (CLF-C02)',
+                icon: 'cloud',
+                date: 'Jan 2026'
+            },
             {
                 label: 'OEA Cyber Challenge Mexico 2025 CTF - 1st Place (50+ teams)',
-                icon: 'trophy'
+                icon: 'trophy',
+                date: 'Oct 2025'
             },
-            { label: 'Google Cybersecurity Certificate', icon: 'shield' }
+            { label: 'Google Cybersecurity Certificate', icon: 'shield', date: 'Oct 2025' }
         ],
         aboutLead:
             'I focus on distributed systems, cloud infrastructure, backend engineering, and cybersecurity. My work emphasizes reliability, maintainability, and software that holds up under real operational use.',
@@ -253,7 +270,7 @@ export const content = {
     },
     es: {
         profile: {
-            name: 'Bruno Ancona Sala',
+            name: 'Bruno Ancona',
             location: 'Merida, MX',
             email: 'brunoanconasala@gmail.com',
             phone: '+52 (999) 903-3025',
@@ -268,15 +285,32 @@ export const content = {
             }
         },
         certifications: [
-            { label: 'HackDef 10 CTF - Finalista (top 10 equipos a nivel nacional)', icon: 'trophy' },
-            { label: 'AHAU CTF 2026 - 2do lugar (competencia regional)', icon: 'trophy' },
-            { label: 'Google Cloud Certified - Associate Cloud Engineer', icon: 'cloud' },
-            { label: 'AWS Certified Cloud Practitioner (CLF-C02)', icon: 'cloud' },
+            {
+                label: 'HackDef 10 CTF - Finalista (top 10 equipos a nivel nacional)',
+                icon: 'trophy',
+                date: 'Ago 2026'
+            },
+            {
+                label: 'AHAU CTF 2026 - 2do lugar (competencia regional)',
+                icon: 'trophy',
+                date: 'Ago 2026'
+            },
+            {
+                label: 'Google Cloud Certified - Associate Cloud Engineer',
+                icon: 'cloud',
+                date: 'Abr 2026'
+            },
+            {
+                label: 'AWS Certified Cloud Practitioner (CLF-C02)',
+                icon: 'cloud',
+                date: 'Ene 2026'
+            },
             {
                 label: 'OEA Cyber Challenge Mexico 2025 CTF - 1er lugar (50+ equipos)',
-                icon: 'trophy'
+                icon: 'trophy',
+                date: 'Oct 2025'
             },
-            { label: 'Google Cybersecurity Certificate', icon: 'shield' }
+            { label: 'Google Cybersecurity Certificate', icon: 'shield', date: 'Oct 2025' }
         ],
         aboutLead:
             'Me especializo en sistemas distribuidos, infraestructura cloud, backend y ciberseguridad. Mi trabajo se enfoca en confiabilidad, mantenibilidad y software que resista el uso operativo real.',

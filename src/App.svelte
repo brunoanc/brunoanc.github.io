@@ -1,8 +1,7 @@
 <script>
-    import { _, locale } from 'svelte-i18n';
+    import { _, locale } from './i18n';
 
     import TopNav from './components/TopNav.svelte';
-    import TerminalCard from './components/TerminalCard.svelte';
     import Starfield from './components/Starfield.svelte';
     import Section from './components/Section.svelte';
     import ProjectCard from './components/ProjectCard.svelte';
@@ -13,6 +12,7 @@
     import { content } from './data/content';
 
     const featuredSlugs = ['smmun', 'cufa-admin-system', 'eternal-mod-manager'];
+    let allProjectsOpen = false;
 
     $: currentLocale = $locale === 'es' ? 'es' : 'en';
     $: localized = content[currentLocale];
@@ -49,23 +49,27 @@
 
 <main>
     <Section id="home" compact>
-        <div class="home-grid">
-            <div class="home-copy">
-                <p class="kicker">{$_('home.kicker')}</p>
-                <h1>{profile.headline}</h1>
-                <p class="lead">{$_('home.lead')}</p>
-                <div class="hero-actions">
-                    <a class="btn primary" href="#projects">{$_('actions.viewProjects')}</a>
-                    <a class="btn secondary" href="#cv">{$_('actions.viewCv')}</a>
-                </div>
+        <img class="hero-star hero-star-one" src="/assets/space/signal-star.svg" alt="" />
+        <img class="hero-star hero-star-two" src="/assets/space/signal-star.svg" alt="" />
+
+        <div class="hero-content">
+            <p class="kicker"><span aria-hidden="true">$</span> whoami</p>
+            <h1>{profile.name}</h1>
+            <p class="hero-title">{profile.headline}</p>
+            <p class="lead">{$_('home.lead')}</p>
+            <div class="hero-actions">
+                <a class="btn primary" href="#projects">{$_('actions.viewProjects')}</a>
+                <a class="btn secondary" href="#cv">{$_('actions.viewCv')}</a>
             </div>
-            <figure class="terminal-preview">
-                <TerminalCard locale={currentLocale} ariaLabel={$_('home.imageAlt')} />
-            </figure>
         </div>
+
+        <a class="scroll-cue mono" href="#highlights">
+            <span>{$_('actions.explore')}</span>
+            <span aria-hidden="true">↓</span>
+        </a>
     </Section>
 
-    <Section id="highlights" title={$_('sections.highlights')}>
+    <Section id="highlights" eyebrow="1 // SIGNAL" title={$_('sections.highlights')} compact>
         <div class="cert-strip" aria-label={$_('highlights.aria')}>
             {#each certifications as item}
                 <span>
@@ -98,13 +102,16 @@
                             /></svg
                         >
                     {/if}
-                    {item.label}
+                    <span class="cert-copy">
+                        <span class="cert-date mono">{item.date}</span>
+                        <span>{item.label}</span>
+                    </span>
                 </span>
             {/each}
         </div>
     </Section>
 
-    <Section id="projects" title={$_('sections.work')}>
+    <Section id="projects" eyebrow="2 // BUILD LOG" title={$_('sections.work')}>
         <p class="section-lead">{$_('projects.lead')}</p>
 
         <div class="project-grid">
@@ -113,8 +120,10 @@
             {/each}
         </div>
 
-        <details class="all-projects">
-            <summary>{$_('projects.all')}</summary>
+        <details class="all-projects" bind:open={allProjectsOpen}>
+            <summary>
+                {allProjectsOpen ? $_('projects.hideAll') : $_('projects.showAll')}
+            </summary>
             <div class="project-grid full">
                 {#each projects.filter((project) => !project.featured) as project}
                     <ProjectCard {project} />
@@ -123,7 +132,7 @@
         </details>
     </Section>
 
-    <Section id="experience" title={$_('sections.experience')}>
+    <Section id="experience" eyebrow="3 // TRAJECTORY" title={$_('sections.experience')}>
         <div class="experience-list timeline-grid">
             {#each experience as item, index}
                 <div class:timeline-left={index % 2 === 0} class:timeline-right={index % 2 !== 0}>
@@ -145,7 +154,7 @@
         </div>
     </Section>
 
-    <Section id="about" title={$_('sections.about')}>
+    <Section id="about" eyebrow="4 // TOOLBOX" title={$_('sections.about')}>
         <p class="section-lead">{aboutLead}</p>
 
         <div class="skills-grid">
@@ -162,7 +171,7 @@
         </div>
     </Section>
 
-    <Section id="cv" title={$_('sections.cv')}>
+    <Section id="cv" eyebrow="5 // DOWNLOAD" title={$_('sections.cv')} compact>
         <p class="section-lead">{$_('cv.lead')}</p>
         <div class="cv-actions">
             <a class="btn primary" href="/Bruno-Ancona-CV-English.pdf" download
@@ -192,7 +201,7 @@
         </div>
     </Section>
 
-    <Section id="contact" title={$_('sections.contact')} compact>
+    <Section id="contact" eyebrow="6 // OPEN CHANNEL" title={$_('sections.contact')} compact>
         <p class="section-lead">{$_('contact.lead')}</p>
         <div class="hero-actions">
             <a class="btn primary" href={profile.links.email}>{$_('contact.email')}</a>
