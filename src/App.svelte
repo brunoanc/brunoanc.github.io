@@ -12,6 +12,7 @@
     import { content } from './data/content';
 
     const featuredSlugs = ['smmun', 'cufa-admin-system', 'eternal-mod-manager'];
+    let allProjectsOpen = false;
 
     $: currentLocale = $locale === 'es' ? 'es' : 'en';
     $: localized = content[currentLocale];
@@ -119,8 +120,10 @@
             {/each}
         </div>
 
-        <details class="all-projects">
-            <summary>{$_('projects.all')}</summary>
+        <details class="all-projects" bind:open={allProjectsOpen}>
+            <summary>
+                {allProjectsOpen ? $_('projects.hideAll') : $_('projects.showAll')}
+            </summary>
             <div class="project-grid full">
                 {#each projects.filter((project) => !project.featured) as project}
                     <ProjectCard {project} />

@@ -39,7 +39,8 @@ const messages = {
         },
         projects: {
             lead: 'The recent work here is centered on production systems, cloud-native workflows, and cross-platform tooling that solve real operational problems.',
-            all: 'See full project list'
+            showAll: 'Show all projects',
+            hideAll: 'Hide additional projects'
         },
         cv: {
             lead: 'Software engineering student focused on distributed systems, cloud infrastructure, backend engineering, and cybersecurity.',
@@ -100,7 +101,8 @@ const messages = {
         },
         projects: {
             lead: 'El trabajo reciente se centra en sistemas de produccion, flujos cloud-native y herramientas multiplataforma que resuelven problemas operativos reales.',
-            all: 'Ver lista completa de proyectos'
+            showAll: 'Mostrar todos los proyectos',
+            hideAll: 'Ocultar proyectos adicionales'
         },
         cv: {
             lead: 'Estudiante de Ingenieria en TI con experiencia en sistemas cloud-native, infraestructura backend y ciberseguridad.',
