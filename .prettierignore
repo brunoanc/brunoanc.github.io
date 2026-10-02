@@ -8,8 +8,13 @@ bun.lockb
 # Generated and local-only files
 CV English.md
 CV Español.md
-stitch-downloads/
 .codex/
 .vscode/
 dist/
 /static/
+
+# ESLint owns script and Svelte formatting (Stroustrup braces).
+**/*.js
+**/*.mjs
+**/*.cjs
+**/*.svelte
