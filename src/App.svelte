@@ -1,218 +1,356 @@
 <script>
-    import { _, locale } from './i18n';
+    import { onMount, tick } from 'svelte';
+    import { Download, Terminal, CircleHelp, Eraser, ArrowUpRight } from '@lucide/svelte';
+    import { copy } from './data/portfolio.js';
+    import { terminalCopy } from './data/terminal-copy.js';
+    import { locale, setAppLocale } from './i18n.js';
+    import {
+        execute,
+        sections,
+        commandFor,
+        commandForRoute,
+        routeFromHash,
+        hashFor,
+        cvPath
+    } from './terminal.js';
+    import PortfolioView from './components/PortfolioView.svelte';
+    import CommandLine from './components/CommandLine.svelte';
 
-    import TopNav from './components/TopNav.svelte';
-    import Starfield from './components/Starfield.svelte';
-    import Section from './components/Section.svelte';
-    import ProjectCard from './components/ProjectCard.svelte';
-    import ExperienceItem from './components/ExperienceItem.svelte';
-    import SiteFooter from './components/SiteFooter.svelte';
+    let cwd = '/home/bruno';
+    let history = [];
+    let serial = 0;
+    const initial = routeFromHash(window.location.hash);
 
-    import { setAppLocale } from './i18n';
-    import { content } from './data/content';
-
-    const featuredSlugs = ['smmun', 'cufa-admin-system', 'eternal-mod-manager'];
-    let allProjectsOpen = false;
-
-    $: currentLocale = $locale === 'es' ? 'es' : 'en';
-    $: localized = content[currentLocale];
-    $: profile = localized.profile;
-    $: certifications = localized.certifications;
-    $: skillGroups = localized.skillGroups;
-    $: experience = localized.experience;
-    $: education = localized.education;
-    $: projects = localized.projects;
-    $: aboutLead = localized.aboutLead;
-    $: cvFocusItems = localized.cvFocusItems;
-    $: featuredProjects = projects.filter((project) => featuredSlugs.includes(project.slug));
-    $: navSections = [
-        { id: 'projects', label: $_('nav.projects') },
-        { id: 'experience', label: $_('nav.experience') },
-        { id: 'about', label: $_('nav.about') },
-        { id: 'cv', label: $_('nav.cv') },
-        { id: 'contact', label: $_('nav.contact') }
+    let entries = [
+        {
+            id: serial++,
+            command: commandForRoute(initial),
+            path: '~',
+            result: initial
+        }
     ];
 
+    let activeView = initial.view;
+    let output;
+    let commandLine;
+    let announcement = '';
+
+    $: language = $locale === 'es' ? 'es' : 'en';
+    $: t = copy[language];
+    $: s = terminalCopy[language];
+
+    $: activeSection =
+        activeView === 'project'
+            ? 'projects'
+            : ['skills', 'education', 'achievements'].includes(activeView)
+            ? 'experience'
+            : activeView === 'cv'
+            ? 'contact'
+            : activeView;
+
     $: if (typeof document !== 'undefined') {
-        document.documentElement.lang = currentLocale;
+        document.documentElement.lang = language;
+        document.querySelector('meta[name="description"]')?.setAttribute('content', t.description);
+
+        document
+            .querySelector('meta[property="og:description"]')
+            ?.setAttribute('content', t.description);
     }
+
+    async function revealLatest(focusOutput = false) {
+        await tick();
+        const latest = output?.lastElementChild;
+
+        if (!latest) {
+            return;
+        }
+
+        output.scrollTop = latest.offsetTop;
+
+        if (focusOutput) {
+            (entries.length ? latest : output).focus({ preventScroll: true });
+        }
+    }
+
+    function clear() {
+        commandLine?.resetNavigation();
+        entries = [];
+        announcement = s.cleared;
+    }
+
+    async function run(command, { fresh = false, updateUrl = true, download = true } = {}) {
+        const nextHistory = [...history, command];
+        const result = execute(command, { cwd, language, history: nextHistory });
+
+        if (result.empty) {
+            return;
+        }
+
+        if (fresh) {
+            commandLine?.resetNavigation();
+        }
+
+        if (!download) {
+            delete result.downloadLocale;
+        }
+
+        history = nextHistory;
+        announcement = '';
+
+        if (result.clear) {
+            clear();
+            return;
+        }
+
+        const entry = { id: serial++, command, path: cwd.replace('/home/bruno', '~'), result };
+
+        entries = fresh ? [entry] : [...entries, entry];
+
+        if (result.cwd) {
+            cwd = result.cwd;
+        }
+
+        if (result.view) {
+            activeView = result.view;
+
+            if (updateUrl && window.location.hash !== hashFor(result)) {
+                window.history.pushState(null, '', hashFor(result));
+            }
+        }
+
+        if (result.downloadLocale) {
+            const link = document.createElement('a');
+
+            link.href = cvPath(result.downloadLocale);
+            link.download = '';
+            document.body.append(link);
+            link.click();
+            link.remove();
+        }
+
+        await revealLatest(fresh);
+
+        announcement = result.error
+            ? `${s.error}: ${s[result.error]} ${result.value || ''}`
+            : s.results;
+    }
+
+    function navigate(event, command) {
+        if (
+            event &&
+            (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button > 0)
+        ) {
+            return;
+        }
+
+        event?.preventDefault();
+
+        if (!command) {
+            const route = routeFromHash(new URL(event.currentTarget.href).hash);
+
+            command = commandForRoute(route);
+        }
+
+        run(command, { fresh: true, download: false });
+    }
+
+    function cancel(command) {
+        entries = [
+            ...entries,
+            {
+                id: serial++,
+                command: `${command}^C`,
+                path: cwd.replace('/home/bruno', '~'),
+                result: {}
+            }
+        ];
+
+        revealLatest();
+    }
+
+    onMount(() => {
+        const restoreRoute = () => {
+            const route = routeFromHash(window.location.hash);
+            const command = commandForRoute(route);
+
+            run(command, { fresh: true, updateUrl: false, download: false });
+        };
+
+        window.addEventListener('hashchange', restoreRoute);
+        return () => window.removeEventListener('hashchange', restoreRoute);
+    });
 </script>
 
-<Starfield />
+<a
+    class="skip-link"
+    href="#terminal-output"
+    on:click={(event) => {
+        event.preventDefault();
+        output?.focus();
+    }}
+>{t.skip}</a>
 
-<TopNav
-    sections={navSections}
-    github={profile.links.github}
-    {currentLocale}
-    setLocale={setAppLocale}
-/>
+<div class="site-shell">
+    <header class="site-header">
+        <a
+            class="brand"
+            href="#about"
+            on:click={(event) => navigate(event, 'whoami')}
+            aria-label="Bruno Ancona"
+        >
+            <span class="brand-mark">ba<span>.</span></span>
 
-<main>
-    <Section id="home" compact>
-        <img class="hero-star hero-star-one" src="/assets/space/signal-star.svg" alt="" />
-        <img class="hero-star hero-star-two" src="/assets/space/signal-star.svg" alt="" />
-
-        <div class="hero-content">
-            <p class="kicker"><span aria-hidden="true">$</span> whoami</p>
-            <h1>{profile.name}</h1>
-            <p class="hero-title">{profile.headline}</p>
-            <p class="lead">{$_('home.lead')}</p>
-            <div class="hero-actions">
-                <a class="btn primary" href="#projects">{$_('actions.viewProjects')}</a>
-                <a class="btn secondary" href="#cv">{$_('actions.viewCv')}</a>
-            </div>
-        </div>
-
-        <a class="scroll-cue mono" href="#highlights">
-            <span>{$_('actions.explore')}</span>
-            <span aria-hidden="true">↓</span>
+            <span>Bruno Ancona</span>
         </a>
-    </Section>
 
-    <Section id="highlights" eyebrow="1 // SIGNAL" title={$_('sections.highlights')} compact>
-        <div class="cert-strip" aria-label={$_('highlights.aria')}>
-            {#each certifications as item}
-                <span>
-                    {#if item.icon === 'cloud'}
-                        <svg viewBox="0 0 24 24" aria-hidden="true"
-                            ><path
-                                d="M7.2 18.5h9a4.3 4.3 0 0 0 .6-8.5 5.7 5.7 0 0 0-11 1.8A3.4 3.4 0 0 0 7.2 18.5Z"
-                                fill="currentColor"
-                            /></svg
-                        >
-                    {:else if item.icon === 'trophy'}
-                        <svg viewBox="0 0 24 24" aria-hidden="true"
-                            ><path
-                                d="M7 4h10v2h2a1 1 0 0 1 1 1v1a5 5 0 0 1-5 5h-.1A4.5 4.5 0 0 1 13 15.7V18h3v2H8v-2h3v-2.3A4.5 4.5 0 0 1 9.1 13H9a5 5 0 0 1-5-5V7a1 1 0 0 1 1-1h2V4Zm10 4v-.1h1A3 3 0 0 1 15 11h-.1A4.5 4.5 0 0 0 17 8Zm-10-.1V8a4.5 4.5 0 0 0 2.1 3H9a3 3 0 0 1-3-3h1Z"
-                                fill="currentColor"
-                            /></svg
-                        >
-                    {:else if item.icon === 'shield'}
-                        <svg viewBox="0 0 24 24" aria-hidden="true"
-                            ><path
-                                d="M12 3 5 6v5c0 4.3 2.6 8.2 7 10 4.4-1.8 7-5.7 7-10V6l-7-3Zm-1 12 6-6 1.4 1.4L11 17.8l-3.4-3.4L9 13l2 2Z"
-                                fill="currentColor"
-                            /></svg
-                        >
-                    {:else}
-                        <svg viewBox="0 0 24 24" aria-hidden="true"
-                            ><path
-                                d="M12 4 2 9l10 5 8-4v6h2V9L12 4Zm-6 9v3c0 2.2 2.7 4 6 4s6-1.8 6-4v-3l-6 3-6-3Z"
-                                fill="currentColor"
-                            /></svg
-                        >
-                    {/if}
-                    <span class="cert-copy">
-                        <span class="cert-date mono">{item.date}</span>
-                        <span>{item.label}</span>
-                    </span>
-                </span>
-            {/each}
+        <div class="header-tools">
+            <div class="language-switch" role="group" aria-label={t.language}>
+                <button
+                    lang="en"
+                    aria-pressed={language === 'en'}
+                    on:click={() => setAppLocale('en')}
+                >EN</button>
+
+                <span aria-hidden="true">/</span>
+
+                <button
+                    lang="es"
+                    aria-pressed={language === 'es'}
+                    on:click={() => setAppLocale('es')}
+                >ES</button>
+            </div>
+
+            <a class="header-cv" href={cvPath(language)} download><Download size={15} />CV</a>
         </div>
-    </Section>
+    </header>
 
-    <Section id="projects" eyebrow="2 // BUILD LOG" title={$_('sections.work')}>
-        <p class="section-lead">{$_('projects.lead')}</p>
+    <main>
+        <h1 class="sr-only">Bruno Ancona · {language === 'es' ? 'Portafolio' : 'Portfolio'}</h1>
 
-        <div class="project-grid">
-            {#each featuredProjects as project}
-                <ProjectCard {project} compact />
-            {/each}
+        <div class="workspace-caption">
+            <p>{s.intro}</p>
+
+            <a href="https://github.com/brunoanc" target="_blank" rel="noopener noreferrer">
+                GitHub<ArrowUpRight size={13} />
+            </a>
         </div>
 
-        <details class="all-projects" bind:open={allProjectsOpen}>
-            <summary>
-                {allProjectsOpen ? $_('projects.hideAll') : $_('projects.showAll')}
-            </summary>
-            <div class="project-grid full">
-                {#each projects.filter((project) => !project.featured) as project}
-                    <ProjectCard {project} />
+        <div class="terminal-window">
+            <div class="terminal-titlebar">
+                <button
+                    class="session-title"
+                    on:click={() => commandLine.focus()}
+                    title={s.commandMode}
+                >
+                    <Terminal size={17} />
+
+                    <span>bruno@portfolio: {cwd.replace('/home/bruno', '~')}</span>
+                </button>
+
+                <div class="window-tools">
+                    <button
+                        class="icon-button"
+                        aria-label={s.help}
+                        title={s.help}
+                        on:click={(event) => navigate(event, 'help')}
+                    >
+                        <CircleHelp size={17} />
+                    </button>
+
+                    <button
+                        class="icon-button"
+                        aria-label={s.clear}
+                        title={s.clear}
+                        on:click={() => {
+                            clear();
+                            commandLine.focus();
+                        }}
+                    >
+                        <Eraser size={17} />
+                    </button>
+                </div>
+            </div>
+
+            <nav class="section-tabs" aria-label={s.navigation}>
+                {#each sections as section, i}
+                    <a
+                        href={`#${section}`}
+                        aria-current={activeSection === section ? 'page' : undefined}
+                        on:click={(event) => navigate(event, commandFor(section))}
+                    >{s.nav[i]}</a>
+                {/each}
+            </nav>
+
+            <!-- svelte-ignore a11y_no_noninteractive_tabindex (the scrollback must be keyboard-scrollable) -->
+            <div
+                class="terminal-output"
+                id="terminal-output"
+                bind:this={output}
+                tabindex="0"
+                role="region"
+                aria-label={s.output}
+            >
+                {#each entries as entry (entry.id)}
+                    <div class="terminal-entry" tabindex="-1">
+                        <p class="echo-command">
+                            <span class="prompt-host">bruno<span>@portfolio</span></span>
+
+                            <span class="prompt-path">{entry.path}</span>
+                            <span class="prompt-symbol">$</span>
+                            <span>{entry.command}</span>
+                        </p>
+
+                        {#if entry.result.error}
+                            <p class="terminal-error">
+                                <span>{s[entry.result.error]}</span>
+
+                                {#if entry.result.value}
+                                    <code>{entry.result.value}</code>
+                                {/if}
+                            </p>
+                        {/if}
+
+                        {#if entry.result.lines}
+                            <pre class="plain-output">{entry.result.lines.join('\n')}</pre>
+                        {/if}
+
+                        {#if entry.result.view}
+                            <PortfolioView
+                                result={entry.result}
+                                {language}
+                                {navigate}
+                            />
+                        {/if}
+                    </div>
+                {:else}
+                    <p class="empty-terminal">{s.ready}</p>
                 {/each}
             </div>
-        </details>
-    </Section>
 
-    <Section id="experience" eyebrow="3 // TRAJECTORY" title={$_('sections.experience')}>
-        <div class="experience-list timeline-grid">
-            {#each experience as item, index}
-                <div class:timeline-left={index % 2 === 0} class:timeline-right={index % 2 !== 0}>
-                    <ExperienceItem {item} />
-                </div>
-            {/each}
-
-            <div class="timeline-right">
-                <article class="education-card">
-                    <h3>{education.degree}</h3>
-                    <p class="org mono">{education.org} · {education.period}</p>
-                    <ul>
-                        {#each education.notes as note}
-                            <li>{note}</li>
-                        {/each}
-                    </ul>
-                </article>
-            </div>
-        </div>
-    </Section>
-
-    <Section id="about" eyebrow="4 // TOOLBOX" title={$_('sections.about')}>
-        <p class="section-lead">{aboutLead}</p>
-
-        <div class="skills-grid">
-            {#each skillGroups as group}
-                <article>
-                    <h3>{group.title}</h3>
-                    <ul>
-                        {#each group.items as skill}
-                            <li>{skill}</li>
-                        {/each}
-                    </ul>
-                </article>
-            {/each}
-        </div>
-    </Section>
-
-    <Section id="cv" eyebrow="5 // DOWNLOAD" title={$_('sections.cv')} compact>
-        <p class="section-lead">{$_('cv.lead')}</p>
-        <div class="cv-actions">
-            <a class="btn primary" href="/Bruno-Ancona-CV-English.pdf" download
-                >{$_('cv.downloadEn')}</a
-            >
-            <a class="btn secondary" href="/Bruno-Ancona-CV-Spanish.pdf" download
-                >{$_('cv.downloadEs')}</a
-            >
-        </div>
-        <div class="cv-grid">
-            <article>
-                <h3>{$_('cv.focus')}</h3>
-                <ul>
-                    {#each cvFocusItems as item}
-                        <li>{item}</li>
-                    {/each}
-                </ul>
-            </article>
-            <article>
-                <h3>{$_('cv.contact')}</h3>
-                <ul>
-                    <li>{profile.email}</li>
-                    <li>{profile.phone}</li>
-                    <li>{profile.location}</li>
-                </ul>
-            </article>
-        </div>
-    </Section>
-
-    <Section id="contact" eyebrow="6 // OPEN CHANNEL" title={$_('sections.contact')} compact>
-        <p class="section-lead">{$_('contact.lead')}</p>
-        <div class="hero-actions">
-            <a class="btn primary" href={profile.links.email}>{$_('contact.email')}</a>
             <a
-                class="btn secondary"
-                href={profile.links.linkedin}
-                target="_blank"
-                rel="noreferrer noopener">{$_('contact.linkedin')}</a
-            >
-        </div>
-    </Section>
-</main>
+                class="sr-only focus-link"
+                href="#terminal-output"
+                on:click={(event) => {
+                    event.preventDefault();
+                    revealLatest(true);
+                }}
+            >{s.outputFocus}</a>
 
-<SiteFooter name={profile.name} backToTopLabel={$_('footer.top')} />
+            <CommandLine
+                bind:this={commandLine}
+                {language}
+                {cwd}
+                {history}
+                {run}
+                {clear}
+                {cancel}
+            />
+        </div>
+    </main>
+
+    <footer>
+        <span>© {new Date().getFullYear()} Bruno Ancona Sala</span>
+    </footer>
+</div>
+
+<div class="sr-only" role="status" aria-live="polite" aria-atomic="true">{announcement}</div>

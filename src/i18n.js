@@ -1,131 +1,4 @@
-import { derived, writable } from 'svelte/store';
-
-const messages = {
-    en: {
-        nav: {
-            projects: 'Projects',
-            experience: 'Experience',
-            about: 'About',
-            cv: 'CV',
-            contact: 'Contact',
-            sections: 'Sections',
-            close: 'Close menu'
-        },
-        locale: {
-            label: 'Language',
-            en: 'EN',
-            es: 'ES'
-        },
-        actions: {
-            viewProjects: 'View Projects',
-            viewCv: 'View CV',
-            explore: 'Explore'
-        },
-        home: {
-            kicker: 'Distributed systems · Cloud · Security',
-            lead: 'Software engineering student focused on distributed systems, cloud infrastructure, backend engineering, and cybersecurity.',
-            imageAlt: 'Terminal-style profile snippet with skills and languages.'
-        },
-        sections: {
-            highlights: 'Highlights',
-            work: 'Selected Work',
-            experience: 'Experience and Leadership',
-            about: 'About',
-            cv: 'My CV',
-            contact: "Let's build something meaningful"
-        },
-        highlights: {
-            aria: 'Highlights'
-        },
-        projects: {
-            lead: 'The recent work here is centered on production systems, cloud-native workflows, and cross-platform tooling that solve real operational problems.',
-            showAll: 'Show all projects',
-            hideAll: 'Hide additional projects'
-        },
-        cv: {
-            lead: 'Software engineering student focused on distributed systems, cloud infrastructure, backend engineering, and cybersecurity.',
-            downloadEn: 'Download CV (English)',
-            downloadEs: 'Download CV (Spanish)',
-            focus: 'Current Focus',
-            contact: 'Contact',
-            focusItems: [
-                'Distributed systems, cloud infrastructure, and reliable operations.',
-                'Production software for institutional and event-driven workflows.',
-                'Cross-platform tooling and security-aware engineering practices.'
-            ]
-        },
-        contact: {
-            lead: 'Open to internships, collaborative projects, and engineering opportunities in backend, cloud, and systems development.',
-            email: 'Email Me',
-            linkedin: 'LinkedIn'
-        },
-        footer: {
-            top: 'Back to top'
-        }
-    },
-    es: {
-        nav: {
-            projects: 'Proyectos',
-            experience: 'Experiencia',
-            about: 'Perfil',
-            cv: 'CV',
-            contact: 'Contacto',
-            sections: 'Secciones',
-            close: 'Cerrar menú'
-        },
-        locale: {
-            label: 'Idioma',
-            en: 'EN',
-            es: 'ES'
-        },
-        actions: {
-            viewProjects: 'Ver proyectos',
-            viewCv: 'Ver CV',
-            explore: 'Explorar'
-        },
-        home: {
-            kicker: 'Sistemas distribuidos · Cloud · Seguridad',
-            lead: 'Estudiante de Ingenieria en TI con experiencia en sistemas cloud-native, infraestructura backend y ciberseguridad.',
-            imageAlt: 'Fragmento de terminal con informacion de perfil, lenguajes y habilidades.'
-        },
-        sections: {
-            highlights: 'Destacados',
-            work: 'Trabajo seleccionado',
-            experience: 'Experiencia y liderazgo',
-            about: 'Perfil',
-            cv: 'Mi CV',
-            contact: 'Construyamos algo util'
-        },
-        highlights: {
-            aria: 'Destacados'
-        },
-        projects: {
-            lead: 'El trabajo reciente se centra en sistemas de produccion, flujos cloud-native y herramientas multiplataforma que resuelven problemas operativos reales.',
-            showAll: 'Mostrar todos los proyectos',
-            hideAll: 'Ocultar proyectos adicionales'
-        },
-        cv: {
-            lead: 'Estudiante de Ingenieria en TI con experiencia en sistemas cloud-native, infraestructura backend y ciberseguridad.',
-            downloadEn: 'Descargar CV (Ingles)',
-            downloadEs: 'Descargar CV (Espanol)',
-            focus: 'Enfoque actual',
-            contact: 'Contacto',
-            focusItems: [
-                'Sistemas distribuidos, infraestructura cloud y operaciones confiables.',
-                'Software de produccion para flujos institucionales y orientados a eventos.',
-                'Herramientas multiplataforma y practicas de ingenieria con enfoque en seguridad.'
-            ]
-        },
-        contact: {
-            lead: 'Abierto a practicas profesionales, proyectos colaborativos y oportunidades de ingenieria en backend, cloud y sistemas.',
-            email: 'Escribeme',
-            linkedin: 'LinkedIn'
-        },
-        footer: {
-            top: 'Volver arriba'
-        }
-    }
-};
+import { writable } from 'svelte/store';
 
 const normalizeLocale = (value) => (value && value.toLowerCase().startsWith('es') ? 'es' : 'en');
 
@@ -134,20 +7,46 @@ const getInitialLocale = () => {
         return 'en';
     }
 
+    const query = new URLSearchParams(window.location.search).get('lang');
+
+    if (query === 'en' || query === 'es') {
+        return query;
+    }
+
+    try {
+        const saved = window.localStorage.getItem('portfolio-language');
+
+        if (saved === 'en' || saved === 'es') {
+            return saved;
+        }
+    }
+    catch {
+        /* Storage may be unavailable in private browsing. */
+    }
+
     return normalizeLocale(window.navigator.language || window.navigator.languages?.[0]);
 };
 
 export const locale = writable('en');
 
-const translate = (language, key) => {
-    const catalog = messages[language] || messages.en;
-    return key.split('.').reduce((value, segment) => value?.[segment], catalog) ?? key;
-};
-
-export const _ = derived(locale, (language) => (key) => translate(language, key));
-
 export const initI18n = () => locale.set(getInitialLocale());
 
 export const setAppLocale = (value) => {
-    locale.set(normalizeLocale(value));
+    const language = normalizeLocale(value);
+
+    locale.set(language);
+
+    if (typeof window !== 'undefined') {
+        try {
+            window.localStorage.setItem('portfolio-language', language);
+        }
+        catch {
+            /* Keep the language switch usable without storage. */
+        }
+
+        const url = new URL(window.location.href);
+
+        url.searchParams.set('lang', language);
+        window.history.replaceState(null, '', url);
+    }
 };
