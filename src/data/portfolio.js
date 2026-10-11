@@ -293,9 +293,9 @@ export const copy = {
                 'Jan 2026',
                 'Amazon Web Services · Certification'
             ],
-            ['HackDef 10 CTF', 'Aug 2026', 'Finalist · top 10 teams nationally'],
+            ['HackDef 10 CTF', 'Oct 2026', '1st place nationally · 80+ teams'],
             ['AHAU CTF 2026', 'Aug 2026', '2nd place · 20+ teams, southeastern Mexico'],
-            ['OEA Cyber Challenge Mexico 2025', 'Oct 2025', '1st place · 50+ teams']
+            ['OEA Cyber Challenge Mexico 2025', 'Oct 2025', '1st place nationally · 50+ teams']
         ],
         writeups: 'CTF write-ups',
         contactTitle: 'Get in touch',
@@ -371,9 +371,9 @@ export const copy = {
                 'Ene 2026',
                 'Amazon Web Services · Certificación'
             ],
-            ['HackDef 10 CTF', 'Ago 2026', 'Finalista · entre los 10 mejores equipos nacionales'],
+            ['HackDef 10 CTF', 'Oct 2026', '1.er lugar nacional · 80+ equipos'],
             ['AHAU CTF 2026', 'Ago 2026', '2.º lugar · 20+ equipos del sureste de México'],
-            ['OEA Cyber Challenge México 2025', 'Oct 2025', '1.er lugar · 50+ equipos']
+            ['OEA Cyber Challenge México 2025', 'Oct 2025', '1.er lugar nacional · 50+ equipos']
         ],
         writeups: 'Write-ups de CTF',
         contactTitle: 'Contacto',
