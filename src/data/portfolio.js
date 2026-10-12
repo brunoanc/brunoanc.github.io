@@ -278,6 +278,12 @@ export const copy = {
                 role: 'Secretary-General',
                 date: 'May 2026 - present',
                 text: 'I serve as Secretary-General and lead development of the conference’s registration platform.'
+            },
+            {
+                org: 'Universidad Anáhuac Mayab · IT department',
+                role: 'University Service Placement | QA & Application Security',
+                date: 'Sep 2026 - present',
+                text: 'I perform functional and security testing of institutional web applications and APIs, including authentication, session management, and access controls. I combine code review with manual testing and scripts, and produce technical reports with evidence, reproduction steps, testing limitations, and remediation recommendations.'
             }
         ],
         degree: 'B.S. in Software Engineering',
@@ -352,6 +358,12 @@ export const copy = {
                 role: 'Secretario General',
                 date: 'May 2026 - presente',
                 text: 'Soy Secretario General y lidero el desarrollo de la plataforma de registros del congreso.'
+            },
+            {
+                org: 'Universidad Anáhuac Mayab · Área de Sistemas',
+                role: 'Servicio social | QA y seguridad de aplicaciones',
+                date: 'Sep 2026 - presente',
+                text: 'Realizo pruebas funcionales y de seguridad en aplicaciones web y APIs institucionales, incluyendo autenticación, sesiones y controles de acceso. Combino revisión de código con pruebas manuales y scripts, y elaboro reportes técnicos con evidencia, pasos de reproducción, límites de las pruebas y recomendaciones de corrección.'
             }
         ],
         degree: 'Ingeniería de Software',
