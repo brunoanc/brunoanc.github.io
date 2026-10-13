@@ -74,6 +74,12 @@
 
 <dialog class="vim-window" bind:this={dialog} aria-labelledby="vim-title" on:cancel={escape}>
     <header class="vim-titlebar">
+        <div class="traffic-lights" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
         <h2 id="vim-title">{editor === 'vim' ? 'VIM - Vi IMproved' : name}</h2>
         <span>[No Name]</span>
     </header>
@@ -118,6 +124,8 @@
         max-height: calc(100dvh - 24px);
         padding: 0;
         border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: 0 24px 64px rgb(0 0 0 / 40%);
         background: var(--paper);
         color: var(--ink);
         font-family: var(--mono);
@@ -126,6 +134,7 @@
     .vim-window[open] {
         display: flex;
         flex-direction: column;
+        animation: window-enter 240ms ease-out both;
     }
 
     .vim-window::backdrop {
@@ -141,11 +150,12 @@
         gap: 8px;
         padding: 12px 16px;
         background: var(--surface);
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .vim-titlebar h2 {
-        font-size: 14px;
+        font-size: 16px;
+        letter-spacing: 0;
     }
 
     .vim-buffer {
@@ -155,7 +165,7 @@
         overflow: auto;
         gap: 24px;
         padding: 16px;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .vim-tildes {
@@ -169,7 +179,7 @@
         padding: 8px 16px;
         overflow-wrap: anywhere;
         color: var(--accent);
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .vim-command {
@@ -184,9 +194,10 @@
         min-width: 0;
         padding: 8px;
         border: 1px solid var(--line);
+        border-radius: 6px;
         background: var(--paper);
         color: var(--ink);
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .vim-command .button {

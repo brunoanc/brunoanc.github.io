@@ -346,6 +346,12 @@
                 inert={terminalEffect === 'kill'}
             >
                 <div class="terminal-titlebar">
+                    <div class="traffic-lights" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
                     <button
                         class="session-title"
                         on:click={() => commandLine.focus()}
