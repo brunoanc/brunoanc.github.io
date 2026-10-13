@@ -2,14 +2,19 @@
     import { onMount } from 'svelte';
     import { terminalCopy } from '../data/terminal-copy.js';
     import { editors } from '../terminal.js';
+    import TrafficLights from './TrafficLights.svelte';
 
     export let language;
     export let editor;
     export let exit;
+    export let minimize;
+    export let minimized = false;
     let dialog;
     let input;
     let command = '';
     let message = '';
+    let expanded = false;
+    let mounted = false;
 
     const replies = {
         ':w': 'write',
@@ -37,6 +42,16 @@
 
     $: s = terminalCopy[language];
     $: name = editors[editor];
+
+    $: if (mounted) {
+        if (minimized) {
+            dialog.close();
+        }
+        else if (!dialog.open) {
+            dialog.showModal();
+            input.focus();
+        }
+    }
 
     function escape(event) {
         event?.preventDefault();
@@ -67,18 +82,13 @@
     }
 
     onMount(() => {
-        dialog.showModal();
-        input.focus();
+        mounted = true;
     });
 </script>
 
-<dialog class="vim-window" bind:this={dialog} aria-labelledby="vim-title" on:cancel={escape}>
+<dialog class="vim-window" class:vim-expanded={expanded} bind:this={dialog} aria-labelledby="vim-title" on:cancel={escape}>
     <header class="vim-titlebar">
-        <div class="traffic-lights" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <TrafficLights {language} close={exit} {minimize} expand={() => (expanded = !expanded)} {expanded} />
 
         <h2 id="vim-title">{editor === 'vim' ? 'VIM - Vi IMproved' : name}</h2>
         <span>[No Name]</span>
@@ -135,6 +145,11 @@
         display: flex;
         flex-direction: column;
         animation: window-enter 240ms ease-out both;
+    }
+
+    .vim-window.vim-expanded {
+        width: calc(100% - 24px);
+        height: calc(100dvh - 24px);
     }
 
     .vim-window::backdrop {

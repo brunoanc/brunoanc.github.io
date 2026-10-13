@@ -18,6 +18,7 @@
     import CommandLine from './components/CommandLine.svelte';
     import VimWindow from './components/VimWindow.svelte';
     import EasterEggOutput from './components/EasterEggOutput.svelte';
+    import TrafficLights from './components/TrafficLights.svelte';
 
     let cwd = '/home/bruno';
     let history = [];
@@ -46,6 +47,11 @@
     let terminalEffect = '';
     let effectTimer;
     let pendingRoute = false;
+    let windowState = 'open';
+    let expanded = false;
+    let reopenButton;
+    let vimMinimized = false;
+    let editorRestoreButton;
 
     $: language = $locale === 'es' ? 'es' : 'en';
     $: t = copy[language];
@@ -97,7 +103,7 @@
     }
 
     async function run(command, { fresh = false, updateUrl = true, download = true } = {}) {
-        if (destroying || destroyed || vimOpen || terminalEffect === 'kill') {
+        if (destroying || destroyed || (vimOpen && !vimMinimized) || terminalEffect === 'kill') {
             return;
         }
 
@@ -118,9 +124,12 @@
 
         history = nextHistory;
         announcement = '';
+        windowState = 'open';
         resetTerminalEffect();
 
         if (result.destroy) {
+            vimOpen = '';
+            vimMinimized = false;
             destroying = true;
             announcement = s.destroying;
             return;
@@ -180,6 +189,7 @@
 
         if (result.vim) {
             vimOpen = result.vim;
+            vimMinimized = false;
             announcement = s.vimOpened.replace('{editor}', editors[vimOpen]);
             return;
         }
@@ -236,6 +246,8 @@
     async function exitVim() {
         announcement = s.vimExited.replace('{editor}', editors[vimOpen]);
         vimOpen = '';
+        vimMinimized = false;
+        windowState = 'open';
         await tick();
 
         if (pendingRoute) {
@@ -246,7 +258,7 @@
     }
 
     function restoreRoute() {
-        if (vimOpen || terminalEffect === 'kill') {
+        if ((vimOpen && !vimMinimized) || terminalEffect === 'kill' || windowState !== 'open') {
             pendingRoute = true;
             return;
         }
@@ -256,6 +268,41 @@
         const command = commandForRoute(route);
 
         return run(command, { fresh: true, updateUrl: false, download: false });
+    }
+
+    async function hideWindow(state) {
+        windowState = state;
+        announcement = state === 'closed' ? s.windowClosed : s.windowMinimized;
+        await tick();
+        reopenButton?.focus();
+    }
+
+    async function restoreWindow() {
+        windowState = 'open';
+        await tick();
+
+        if (pendingRoute) {
+            await restoreRoute();
+        }
+
+        commandLine?.focus();
+    }
+
+    async function toggleExpanded() {
+        expanded = !expanded;
+        await tick();
+        commandLine?.focus();
+    }
+
+    async function minimizeVim() {
+        vimMinimized = true;
+        await tick();
+
+        if (pendingRoute) {
+            await restoreRoute();
+        }
+
+        editorRestoreButton?.focus();
     }
 
     onMount(() => {
@@ -283,8 +330,13 @@
     <a
         class="skip-link"
         href="#terminal-output"
-        on:click={(event) => {
+        on:click={async (event) => {
             event.preventDefault();
+
+            if (windowState !== 'open') {
+                await restoreWindow();
+            }
+
             output?.focus();
         }}
     >{t.skip}</a>
@@ -341,16 +393,20 @@
 
             <div
                 class="terminal-window"
+                class:terminal-expanded={expanded}
                 class:terminal-windows={terminalEffect === 'windows'}
                 class:terminal-playing-dead={terminalEffect === 'kill'}
                 inert={terminalEffect === 'kill'}
+                hidden={windowState !== 'open'}
             >
                 <div class="terminal-titlebar">
-                    <div class="traffic-lights" aria-hidden="true">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+                    <TrafficLights
+                        {language}
+                        close={() => hideWindow('closed')}
+                        minimize={() => hideWindow('minimized')}
+                        expand={toggleExpanded}
+                        {expanded}
+                    />
 
                     <button
                         class="session-title"
@@ -464,6 +520,17 @@
                     windowsMode={terminalEffect === 'windows'}
                 />
             </div>
+
+            {#if windowState !== 'open'}
+                <div class="terminal-reopen">
+                    <Terminal size={28} />
+                    <p>{windowState === 'closed' ? s.windowClosed : s.windowMinimized}</p>
+
+                    <button class="button" bind:this={reopenButton} on:click={restoreWindow}>
+                        {windowState === 'closed' ? s.reopenWindow : s.restoreWindow}
+                    </button>
+                </div>
+            {/if}
         </main>
 
         <footer>
@@ -473,7 +540,15 @@
 {/if}
 
 {#if vimOpen}
-    <VimWindow {language} editor={vimOpen} exit={exitVim} />
+    <VimWindow {language} editor={vimOpen} minimized={vimMinimized} minimize={minimizeVim} exit={exitVim} />
+{/if}
+
+{#if vimOpen && vimMinimized}
+    <button
+        class="button editor-restore"
+        bind:this={editorRestoreButton}
+        on:click={() => (vimMinimized = false)}
+    >{s.restoreEditor.replace('{editor}', editors[vimOpen])}</button>
 {/if}
 
 <div class="sr-only" role="status" aria-live="polite" aria-atomic="true">{announcement}</div>
