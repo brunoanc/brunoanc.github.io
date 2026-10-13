@@ -3,6 +3,7 @@ import { terminalCopy } from './data/terminal-copy.js';
 
 export const sections = ['about', 'projects', 'open-source', 'experience', 'contact'];
 export const categories = ['all', 'backend', 'cloud', 'systems'];
+export const editors = { vi: 'vi', vim: 'Vim', nvim: 'Neovim' };
 
 export const commands = [
     'help',
@@ -44,9 +45,62 @@ const views = {
 };
 
 const easterEggArt = {
+    sandwich: [
+        '     ___________',
+        '    /___________\\',
+        '    ~~~~~~~~~~~~~',
+        '    =============',
+        '    \\___________/',
+        ''
+    ],
+    grass: [
+        '  \\|/   \\|/  \\|/   \\|/  \\|/',
+        '   |  \\|/ |    | \\|/ |    |',
+        '___|___|__|____|__|__|____|___',
+        ''
+    ],
+    '67': ['   __   _____', '  / /  |___ /', ' / _ \\    / /', ' \\___/   /_/', ''],
+    forkbomb: [
+        '               :',
+        '       /               \\',
+        '       :               :',
+        '   /       \\       /       \\',
+        '   :       :       :       :',
+        ' /   \\   /   \\   /   \\   /   \\',
+        ' :   :   :   :   :   :   :   :',
+        ''
+    ],
     iddqd: [],
+    codex: [
+        '  .-----------------.',
+        '  | >_ codex        |',
+        '  |                 |',
+        '  | + easter egg    |',
+        '  | - free time     |',
+        "  '-----------------'",
+        ''
+    ],
+    claude: [
+        '     .----------.',
+        '  ___|  o    o  |___',
+        ' /   |  claude  |   \\',
+        "     '----------'",
+        '      | |    | |',
+        ''
+    ],
     coffee: ['   ( (', '    ) )', '  .----.', '  |    |]', "  '----'", ''],
     launch: ['    /\\', '   /  \\', '   |()|', '   |  |', '  /|  |\\', ' /_||||_\\', '    /\\', ''],
+    sl: [
+        '       (  ) ( ) ( )',
+        '      ( )  ( ) ( )',
+        '     ____          ______',
+        '    _|  |_________|  []  |',
+        '   (                 ___|',
+        '  /|________________|   |',
+        ' /_   O==O==O==O      O |',
+        '==========================',
+        ''
+    ],
     neofetch: [
         '    .--.',
         '   |o_o |',
@@ -57,6 +111,24 @@ const easterEggArt = {
         '\\___)=(___/',
         ''
     ]
+};
+
+const easterEggCommands = {
+    'make me a sandwich': 'sandwichDenied',
+    'sudo make me a sandwich': 'sandwich',
+    exit: 'exit',
+    'git blame': 'blame',
+    'npm install': 'install',
+    ping: 'ping',
+    'docker ps': 'docker',
+    'chmod 777 /': 'chmod',
+    'man woman': 'man',
+    'touch grass': 'grass',
+    'kill -9 $$': 'kill',
+    'git status': 'gitStatus',
+    Windows: 'windows',
+    windows: 'windows',
+    cls: 'windows'
 };
 
 const directories = ['projects', 'experience', 'open-source', 'contact'];
@@ -156,11 +228,48 @@ export function execute(line, { cwd = '/home/bruno', language = 'en', history = 
         return { empty: true };
     }
 
-    const command = Object.hasOwn(aliases, raw) ? aliases[raw] : raw;
+    const sixSeven = raw === 'six' && args.length === 1 && args[0] === 'seven';
+    const forkbomb = line.replace(/\s/g, '') === ':(){:|:&};:';
+
+    const command = forkbomb
+        ? 'forkbomb'
+        : sixSeven
+            ? '67'
+            : Object.hasOwn(aliases, raw)
+                ? aliases[raw]
+                : raw;
+
     const usage = (value) => ({ error: 'usage', value });
+    const removal = removalAttempt(parsed.words, cwd);
+    const phrase = parsed.words.join(' ');
+
+    if (Object.hasOwn(easterEggCommands, phrase)) {
+        const egg = easterEggCommands[phrase];
+        const text = terminalCopy[language === 'es' ? 'es' : 'en'].easterEggs[egg];
+
+        return { egg, lines: [...(easterEggArt[egg] || []), ...text.split('\n')] };
+    }
+
+    if (removal) {
+        if (removal.sudo && removal.noPreserveRoot) {
+            return { destroy: true };
+        }
+
+        const key = !removal.sudo && !removal.noPreserveRoot
+            ? 'rmMissingBoth'
+            : !removal.sudo
+                ? 'rmNoSudo'
+                : 'rmProtectedRoot';
+
+        return { lines: [terminalCopy[language === 'es' ? 'es' : 'en'].easterEggs[key]] };
+    }
+
+    if (Object.hasOwn(editors, command)) {
+        return args.length ? usage(command) : { vim: command };
+    }
 
     if (Object.hasOwn(easterEggArt, command)) {
-        if (args.length) {
+        if (args.length && !sixSeven && !forkbomb) {
             return usage(command);
         }
 
@@ -248,6 +357,52 @@ export function execute(line, { cwd = '/home/bruno', language = 'en', history = 
     }
 
     return { error: 'notFound', value: raw };
+}
+
+function removalAttempt(words, cwd) {
+    const sudo = words[0] === 'sudo';
+    const [command, ...args] = sudo ? words.slice(1) : words;
+
+    if (command !== 'rm') {
+        return null;
+    }
+
+    let recursive = false;
+    let force = false;
+    let noPreserveRoot = false;
+    let options = true;
+    const targets = [];
+
+    for (const arg of args) {
+        if (options && arg === '--') {
+            options = false;
+        }
+        else if (options && arg.startsWith('-')) {
+            if (arg === '--recursive') {
+                recursive = true;
+            }
+            else if (arg === '--force') {
+                force = true;
+            }
+            else if (/^-[rRf]+$/.test(arg)) {
+                recursive ||= /[rR]/.test(arg);
+                force ||= arg.includes('f');
+            }
+            else if (arg === '--no-preserve-root') {
+                noPreserveRoot = true;
+            }
+            else {
+                return null;
+            }
+        }
+        else if (arg) {
+            targets.push(resolveDirectory(arg.replace(/\/\*$/, '/'), cwd));
+        }
+    }
+
+    return recursive && force && targets.some((path) => ['/', '/home/bruno'].includes(path))
+        ? { sudo, noPreserveRoot }
+        : null;
 }
 
 export function complete(line, cwd = '/home/bruno') {

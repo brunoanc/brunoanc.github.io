@@ -10,6 +10,7 @@
     export let run;
     export let clear;
     export let cancel;
+    export let windowsMode = false;
     let input;
     let value = '';
     let draft = '';
@@ -257,10 +258,15 @@
 
     <form class="command-form" on:submit={submit} aria-label={s.commandMode}>
         <label for="command-input">
-            <span class="prompt-host" aria-hidden="true">bruno<span>@portfolio</span></span>
+            {#if windowsMode}
+                <span aria-hidden="true">C:\Users\Lost&gt;</span>
+            {:else}
+                <span class="prompt-host" aria-hidden="true">bruno<span>@portfolio</span></span>
 
-            <span class="prompt-path" aria-hidden="true">{path}</span>
-            <span aria-hidden="true">$</span>
+                <span class="prompt-path" aria-hidden="true">{path}</span>
+                <span aria-hidden="true">$</span>
+            {/if}
+
             <span class="sr-only">{s.input}</span>
         </label>
 
