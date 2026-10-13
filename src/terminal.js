@@ -128,7 +128,21 @@ const easterEggCommands = {
     'git status': 'gitStatus',
     Windows: 'windows',
     windows: 'windows',
-    cls: 'windows'
+    cls: 'windows',
+    sudo: 'sudo',
+    'sudo !!': 'sudoAgain',
+    'uname -a': 'uname',
+    arch: 'arch',
+    'apt moo': 'moo',
+    'which linux': 'linuxYear',
+    reboot: 'reboot',
+    'df -h': 'disk',
+    'free -h': 'memory',
+    'systemctl status life': 'life',
+    'tar --help': 'tar',
+    'grep meaning life': 'meaning',
+    'find / -name motivation': 'motivation',
+    nano: 'nano'
 };
 
 const directories = ['projects', 'experience', 'open-source', 'contact'];
@@ -215,6 +229,22 @@ function resolveDirectory(path, cwd) {
     return `/${parts.join('/')}`;
 }
 
+function cowLines(text) {
+    const rows = text.split('\n').flatMap((line) => line.match(/.{1,36}/gu) || ['']);
+    const width = Math.max(...rows.map((row) => row.length));
+
+    return [
+        ` ${'_'.repeat(width + 2)}`,
+        ...rows.map((row) => `| ${row.padEnd(width)} |`),
+        ` ${'-'.repeat(width + 2)}`,
+        '        \\   ^__^',
+        '         \\  (oo)\\_______',
+        '            (__)\\       )\\/\\',
+        '                ||----w |',
+        '                ||     ||'
+    ];
+}
+
 export function execute(line, { cwd = '/home/bruno', language = 'en', history = [] } = {}) {
     const parsed = tokenize(line);
 
@@ -242,10 +272,23 @@ export function execute(line, { cwd = '/home/bruno', language = 'en', history = 
     const usage = (value) => ({ error: 'usage', value });
     const removal = removalAttempt(parsed.words, cwd);
     const phrase = parsed.words.join(' ');
+    const eggCopy = terminalCopy[language === 'es' ? 'es' : 'en'].easterEggs;
+
+    if (command === 'cowsay') {
+        return { egg: 'cowsay', lines: cowLines(args.join(' ') || eggCopy.cowsay) };
+    }
 
     if (Object.hasOwn(easterEggCommands, phrase)) {
         const egg = easterEggCommands[phrase];
-        const text = terminalCopy[language === 'es' ? 'es' : 'en'].easterEggs[egg];
+
+        const repeats = egg === 'arch'
+            && history.filter((item) => tokenize(item).words?.join(' ') === 'arch').length > 1;
+
+        const text = eggCopy[repeats ? 'archAgain' : egg];
+
+        if (egg === 'moo') {
+            return { egg, lines: cowLines(text) };
+        }
 
         return { egg, lines: [...(easterEggArt[egg] || []), ...text.split('\n')] };
     }
@@ -261,7 +304,7 @@ export function execute(line, { cwd = '/home/bruno', language = 'en', history = 
                 ? 'rmNoSudo'
                 : 'rmProtectedRoot';
 
-        return { lines: [terminalCopy[language === 'es' ? 'es' : 'en'].easterEggs[key]] };
+        return { lines: [eggCopy[key]] };
     }
 
     if (Object.hasOwn(editors, command)) {
@@ -273,7 +316,7 @@ export function execute(line, { cwd = '/home/bruno', language = 'en', history = 
             return usage(command);
         }
 
-        const text = terminalCopy[language === 'es' ? 'es' : 'en'].easterEggs[command];
+        const text = eggCopy[command];
 
         return { lines: [...easterEggArt[command], text] };
     }

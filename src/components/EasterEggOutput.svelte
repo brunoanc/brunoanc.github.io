@@ -25,6 +25,7 @@
 <pre
     class="plain-output"
     class:ascii-grass={egg === 'grass'}
+    class:ascii-cow={egg === 'moo' || egg === 'cowsay'}
     class:terminal-whisper={egg === 'kill'}
     aria-live={egg === 'ping' ? 'polite' : 'off'}
 >{lines.slice(0, shown).join('\n')}</pre>
