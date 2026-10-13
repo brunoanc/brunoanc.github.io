@@ -272,12 +272,10 @@ pre {
 @keyframes window-enter {
     from {
         opacity: 0;
-        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
@@ -433,12 +431,10 @@ pre {
 @keyframes output-enter {
     from {
         opacity: 0;
-        transform: translateY(4px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
