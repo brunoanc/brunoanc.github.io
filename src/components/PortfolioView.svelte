@@ -7,6 +7,7 @@
     export let result;
     export let language;
     export let navigate;
+
     $: t = copy[language];
     $: s = terminalCopy[language];
     $: l = (value) => localized(value, language);

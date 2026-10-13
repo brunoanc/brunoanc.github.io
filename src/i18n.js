@@ -21,7 +21,7 @@ const getInitialLocale = () => {
         }
     }
     catch {
-        /* Storage may be unavailable in private browsing. */
+        // Storage may be unavailable in private browsing
     }
 
     return normalizeLocale(window.navigator.language || window.navigator.languages?.[0]);
@@ -41,7 +41,7 @@ export const setAppLocale = (value) => {
             window.localStorage.setItem('portfolio-language', language);
         }
         catch {
-            /* Keep the language switch usable without storage. */
+            // Keep the language switch usable without storage
         }
 
         const url = new URL(window.location.href);
