@@ -90,6 +90,14 @@
         }
     }
 
+    async function followLatest(entryId) {
+        await tick();
+
+        if (output && windowState === 'open' && entries.at(-1)?.id === entryId) {
+            output.scrollTop = output.scrollHeight;
+        }
+    }
+
     function clear() {
         resetTerminalEffect();
         commandLine?.resetNavigation();
@@ -482,7 +490,11 @@
                             {/if}
 
                             {#if entry.result.egg}
-                                <EasterEggOutput egg={entry.result.egg} lines={entry.result.lines} />
+                                <EasterEggOutput
+                                    egg={entry.result.egg}
+                                    lines={entry.result.lines}
+                                    onProgress={() => followLatest(entry.id)}
+                                />
                             {:else if entry.result.lines}
                                 <pre class="plain-output">{entry.result.lines.join('\n')}</pre>
                             {/if}

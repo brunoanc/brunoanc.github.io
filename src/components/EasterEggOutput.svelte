@@ -3,6 +3,7 @@
 
     export let egg;
     export let lines;
+    export let onProgress;
     let shown = egg === 'ping' ? 1 : lines.length;
 
     onMount(() => {
@@ -12,6 +13,7 @@
 
         const timer = window.setInterval(() => {
             shown++;
+            onProgress();
 
             if (shown === lines.length) {
                 window.clearInterval(timer);
